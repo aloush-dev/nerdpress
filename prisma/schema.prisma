@@ -23,6 +23,18 @@ model Post {
     @@index([userId])
 }
 
+model Service {
+    id          Int    @id @default(autoincrement())
+    userId      String
+    title       String
+    price       Int
+    description String
+
+    user User @relation(fields: [userId], references: [id])
+
+    @@index([userId])
+}
+
 model Configuration {
     id               Int    @id @default(autoincrement())
     websiteName      String @default("My Website")
@@ -71,7 +83,8 @@ model User {
     sessions      Session[]
 
     // Non-Next Auth
-    posts Post[]
+    posts   Post[]
+    Service Service[]
 }
 
 model VerificationToken {

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 
-const BurgerMenu = () => {
+const BurgerMenu = ({ currentPage }: { currentPage: string }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -14,11 +14,41 @@ const BurgerMenu = () => {
 
   return (
     <div>
-      <button onClick={toggleMenu}>
-        <div className="mb-1 mt-1 h-1 w-8 rounded-md bg-theme-text-1"></div>
-        <div className="mb-1 h-1 w-8 rounded-md bg-theme-text-1"></div>
-        <div className="mt-1 h-1 w-8 rounded-md bg-theme-text-1"></div>
-      </button>
+      {isOpen ? (
+        <button onClick={toggleMenu}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            className="h-6 w-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      ) : (
+        <button onClick={toggleMenu}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            className="h-6 w-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      )}
 
       <div
         className={`absolute left-0 right-0 bg-theme-header py-4 transition-opacity duration-300 ${

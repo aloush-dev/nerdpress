@@ -1,8 +1,11 @@
 import { Navbar } from "./Navbar";
 import Link from "next/link";
 import BurgerMenu from "./BurgerMenu";
+import { useRouter } from "next/router";
 
 export function Header() {
+  const router = useRouter();
+  const currentPage = router.pathname.split("/")[1] ?? "";
   return (
     <header
       className={`sticky top-0 z-10 flex items-center bg-theme-header p-4 text-theme-text-1`}
@@ -12,7 +15,7 @@ export function Header() {
       </Link>
       {/* <Navbar /> */}
       <div className="flex justify-end">
-        <BurgerMenu />
+        <BurgerMenu currentPage={currentPage} />
       </div>
     </header>
   );

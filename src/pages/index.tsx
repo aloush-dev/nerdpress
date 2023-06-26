@@ -1,5 +1,5 @@
 import { AboutMe } from "~/components/AboutMe";
-import { BlogPosts } from "~/components/BlogPosts";
+import { BlogPosts } from "~/components/blog/BlogPosts";
 
 export default function Home() {
   return (

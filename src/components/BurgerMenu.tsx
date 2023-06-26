@@ -51,24 +51,36 @@ const BurgerMenu = ({ currentPage }: { currentPage: string }) => {
       )}
 
       <div
-        className={`absolute left-0 right-0 bg-theme-header py-4 transition-opacity duration-300 ${
+        className={`absolute left-0 right-0 top-16 bg-theme-header py-4 transition-opacity duration-300 ${
           isOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
-        <div className="flex flex-col items-center space-y-2">
-          <Link className="border-b-2" href={`/about`}>
+        <div className="flex flex-col items-center space-y-4">
+          <Link
+            className={`${currentPage === "about" ? "border-b-2" : ""}`}
+            onClick={toggleMenu}
+            href={`/about`}
+          >
             About Me
           </Link>
 
-          <Link className="border-b-2" href={`/services`}>
+          <Link
+            className={`${currentPage === "services" ? "border-b-2" : ""}`}
+            onClick={toggleMenu}
+            href={`/services`}
+          >
             Services
           </Link>
 
-          <Link className="border-b-2" href={`/faqs`}>
+          <Link
+            className={`${currentPage === "faqs" ? "border-b-2" : ""}`}
+            onClick={toggleMenu}
+            href={`/faqs`}
+          >
             FAQs
           </Link>
 
-          <div className="border-b-2">
+          <div>
             {user != null ? (
               <button
                 onClick={() => {

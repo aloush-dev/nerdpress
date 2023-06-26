@@ -5,7 +5,7 @@ import {
   type NextAuthOptions,
   type DefaultSession,
 } from "next-auth";
-import EmailProvider from "next-auth/providers/email"
+import EmailProvider from "next-auth/providers/email";
 import { env } from "~/env.mjs";
 import { prisma } from "~/server/db";
 
@@ -42,6 +42,7 @@ export const authOptions: NextAuthOptions = {
       user: {
         ...session.user,
         id: user.id,
+        admin: user.admin,
       },
     }),
   },
@@ -53,10 +54,10 @@ export const authOptions: NextAuthOptions = {
         port: process.env.EMAIL_SERVER_PORT,
         auth: {
           user: process.env.EMAIL_SERVER_USER,
-          pass: process.env.EMAIL_SERVER_PASSWORD
-        }
+          pass: process.env.EMAIL_SERVER_PASSWORD,
+        },
       },
-      from: process.env.EMAIL_FROM
+      from: process.env.EMAIL_FROM,
     }),
     /**
      * ...add more providers here.

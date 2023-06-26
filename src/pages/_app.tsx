@@ -6,6 +6,7 @@ import "~/styles/globals.css";
 import Head from "next/head";
 import { Header } from "~/components/Header";
 
+
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
@@ -17,10 +18,10 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <meta name="description" content="whatever you want" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="flex flex-col bg-theme-light-bg">
-        <Header />
+      <Header />
+      <main className="flex flex-col bg-theme-light-bg">
         <Component {...pageProps} />
-      </div>
+      </main>
     </SessionProvider>
   );
 };

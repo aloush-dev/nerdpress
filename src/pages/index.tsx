@@ -1,5 +1,8 @@
-import { AboutMe } from "~/components/AboutMe";
+import { ContactForm } from "~/components/ContactForm";
+import { Hero } from "~/components/Hero";
 import { LatestBlogPosts } from "~/components/blog/LatestBlogPosts";
+import { FacebookButton } from "~/components/reuseable/FacebookButton";
+import { InstaButton } from "~/components/reuseable/InstaButton";
 
 export default function Home() {
   return (
@@ -7,8 +10,13 @@ export default function Home() {
       <h2 className="p-8 text-center text-4xl font-black">
         Hello and welcome to Reconnect Reiki.
       </h2>
-      <AboutMe />
+      <Hero />
       <LatestBlogPosts />
+      <div className="flex justify-center">
+        <InstaButton colour="[#8b635c]" size="4xl" />
+        <FacebookButton colour="[#8b635c]" size="4xl" />
+      </div>
+      <ContactForm />
     </div>
   );
 }

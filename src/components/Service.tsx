@@ -11,12 +11,10 @@ export function Service({
 }) {
   const session = useSession();
 
-  console.log(session.data?.user.admin);
-
   return (
     <div className="w-80 bg-[#83948e] p-6 text-[#fbf2e4]">
-      <h3>{title.toUpperCase()}</h3>
-      <p>£{price}</p>
+      <h3 className="pb-2 font-bold" >{title.toUpperCase()}</h3>
+      <p className="pb-2 text-2xl" >£{price}</p>
       <p>{description}</p>
     </div>
   );

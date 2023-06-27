@@ -7,6 +7,7 @@ import {
   useState,
 } from "react";
 import { api } from "~/utils/api";
+import { Button } from "../reuseable/Button";
 
 function updateTextAreaSize(textArea?: HTMLTextAreaElement) {
   if (textArea == null) return;
@@ -55,7 +56,7 @@ function Form() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mx-auto flex flex-col gap-4 border-black "
+      className="mx-auto flex flex-col gap-4 border-black p-4"
     >
       <input
         style={{ height: 0 }}
@@ -72,7 +73,7 @@ function Form() {
         placeholder="Content here"
       />
 
-      <button>Submit</button>
+      <Button text="Submit" />
     </form>
   );
 }

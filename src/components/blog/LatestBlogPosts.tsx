@@ -7,23 +7,23 @@ export function LatestBlogPosts() {
   const { data } = api.post.getAll.useQuery();
 
   return (
-    <>
+    <div className="bg-[#83948e]">
       <Heading text="Latest Blog Posts" />
-      <ul>
+      <ul className="flex flex-wrap justify-center">
         {data?.map((post) => (
           <li
-            className="w-40 p-4 m-4
-           bg-[#e3cda0]"
+            className="m-4 w-40 bg-[#e3cda0]
+           p-4"
             key={post.id}
           >
             <Link href={`/blog/posts/${slugify(post.title)}`}>
-              <h3>{post.title}</h3>
-              <p>{post.createdAt.toDateString()}</p>
+              <h3 className="pb-2 font-bold">{post.title}</h3>
               <p>{post.content}</p>
+              <p className="text-sm">{post.createdAt.toDateString()}</p>
             </Link>
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }

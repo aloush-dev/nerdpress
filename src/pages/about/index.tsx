@@ -1,9 +1,10 @@
 import { AboutMe } from "~/components/AboutMe";
+import { Heading } from "~/components/reuseable/Heading";
 
 export default function About() {
   return (
     <>
-      <h2 className="p-8 text-center text-4xl font-black">About Me</h2>
+      <Heading text="About Me" />
       <AboutMe />;
     </>
   );

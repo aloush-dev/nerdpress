@@ -1,5 +1,5 @@
 import { AboutMe } from "~/components/AboutMe";
-import { BlogPosts } from "~/components/blog/BlogPosts";
+import { LatestBlogPosts } from "~/components/blog/LatestBlogPosts";
 
 export default function Home() {
   return (
@@ -8,7 +8,7 @@ export default function Home() {
         Hello and welcome to Reconnect Reiki.
       </h2>
       <AboutMe />
-      <BlogPosts />
+      <LatestBlogPosts />
     </div>
   );
 }

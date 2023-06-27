@@ -3,13 +3,15 @@ import profilePic from "../../public/profileImage.jpeg";
 
 export function AboutMe() {
   return (
-    <div className="text-center">
-        <Image
-        className="p-16 flex items-center justify-center"
-          src={profilePic}
-          style={{ borderRadius: "100%" }}
-          alt="image of Caroline"
-        ></Image>
+    <div className="flex flex-col items-center justify-center text-center">
+      <Image
+        className="p-6"
+        src={profilePic}
+        width={300}
+        height={300}
+        style={{ borderRadius: "100%" }}
+        alt="image of Caroline"
+      ></Image>
       <br></br>
       <p>
         I’m Caroline and live in Doncaster, South Yorkshire. I have always felt

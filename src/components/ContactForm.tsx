@@ -15,8 +15,8 @@ function updateTextAreaSize(textArea?: HTMLTextAreaElement) {
 }
 
 export function ContactForm() {
-  const session = useSession();
-  if (session.status !== "authenticated") return;
+//   const session = useSession();
+//   if (session.status !== "authenticated") return;
 
   return <Form />;
 }

@@ -1,6 +1,7 @@
 import { z } from "zod";
 import {
   createTRPCRouter,
+  protectedAdminProcedure,
   protectedProcedure,
   publicProcedure,
 } from "~/server/api/trpc";
@@ -9,7 +10,7 @@ export const faqRouter = createTRPCRouter({
   getAll: publicProcedure.query(({ ctx }) => {
     return ctx.prisma.faqs.findMany();
   }),
-  create: protectedProcedure
+  create: protectedAdminProcedure
     .input(
       z.object({
         question: z.string(),
@@ -21,7 +22,7 @@ export const faqRouter = createTRPCRouter({
         data: { question, answer, userId: ctx.session.user.id },
       });
     }),
-  deletebyId: protectedProcedure
+  deletebyId: protectedAdminProcedure
     .input(z.object({ id: z.number() }))
     .mutation(({ input: { id }, ctx }) => {
       return ctx.prisma.faqs.delete({ where: { id: id } });

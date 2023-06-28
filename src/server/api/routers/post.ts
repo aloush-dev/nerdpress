@@ -3,6 +3,7 @@ import {
   createTRPCRouter,
   publicProcedure,
   protectedProcedure,
+  protectedAdminProcedure,
 } from "~/server/api/trpc";
 
 export const postRouter = createTRPCRouter({
@@ -16,7 +17,7 @@ export const postRouter = createTRPCRouter({
         where: { slug: slug },
       });
     }),
-  create: protectedProcedure
+  create: protectedAdminProcedure
     .input(
       z.object({ title: z.string(), slug: z.string(), content: z.string() })
     )

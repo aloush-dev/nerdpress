@@ -13,7 +13,7 @@ export const appRouter = createTRPCRouter({
   post: postRouter,
   config: configHandler,
   service: serviceRouter,
-  faq: faqRouter,
+  faqs: faqRouter,
 });
 
 // export type definition of API

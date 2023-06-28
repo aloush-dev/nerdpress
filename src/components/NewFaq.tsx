@@ -37,7 +37,7 @@ function Form() {
     updateTextAreaSize(textAreaRef.current);
   }, [answerValue]);
 
-  const createFaq = api.faq.create.useMutation({
+  const createFaq = api.faqs.create.useMutation({
     onSuccess: () => {
       setQuestionValue("");
       setAnswerValue("");

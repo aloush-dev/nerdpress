@@ -57,6 +57,14 @@ const BurgerMenu = ({ currentPage }: { currentPage: string }) => {
       >
         <div className="flex flex-col items-center space-y-4">
           <Link
+            className={`${currentPage === "" ? "border-b-2" : ""}`}
+            onClick={toggleMenu}
+            href={`/`}
+          >
+            Home
+          </Link>
+
+          <Link
             className={`${currentPage === "about" ? "border-b-2" : ""}`}
             onClick={toggleMenu}
             href={`/about`}
@@ -79,22 +87,6 @@ const BurgerMenu = ({ currentPage }: { currentPage: string }) => {
           >
             FAQs
           </Link>
-
-          <div>
-            {user != null ? (
-              <button
-                onClick={() => {
-                  void signOut();
-                }}
-              >
-                Sign Out
-              </button>
-            ) : (
-              ""
-            )}
-          </div>
-
-          <div className="flex justify-end">Logged in as : {user?.email}</div>
         </div>
       </div>
     </div>

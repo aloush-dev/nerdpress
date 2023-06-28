@@ -10,14 +10,14 @@ export default function SingleBlogPost() {
     return <p>Loading...</p>;
   }
   const { data } = api.post.getPostById.useQuery({
-    slug: slug,
+    slug: slug as string,
   });
 
   if (data === undefined) return null;
 
   return (
     <>
-      <Heading text={data?.title} />
+      <Heading text={data?.title as string} />
       <div className="text-center">
         <div>{data?.createdAt.toDateString()}</div>
 

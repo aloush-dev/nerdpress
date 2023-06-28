@@ -17,11 +17,14 @@ export const serviceRouter = createTRPCRouter({
         description: z.string(),
       })
     )
-    .mutation(async ({ input: { title, price, description }, ctx }) => {
-      const service = await ctx.prisma.service.create({
+    .mutation(({ input: { title, price, description }, ctx }) => {
+      return ctx.prisma.service.create({
         data: { title, price, description, userId: ctx.session.user.id },
       });
-
-      return service;
+    }),
+  deletebyId: protectedProcedure
+    .input(z.object({ id: z.number() }))
+    .mutation(({ input: { id }, ctx }) => {
+      return ctx.prisma.service.delete({ where: { id: id } });
     }),
 });

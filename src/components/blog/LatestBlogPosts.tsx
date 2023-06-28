@@ -7,7 +7,7 @@ export function LatestBlogPosts() {
   const { data } = api.post.getAll.useQuery();
 
   return (
-    <div className="bg-[#83948e]">
+    <div className="bg-[#83948e] text-[#fbf2e4]">
       <Heading text="Latest Blog Posts" />
       <ul className="flex flex-wrap justify-center">
         {data?.map((post) => (
@@ -18,7 +18,6 @@ export function LatestBlogPosts() {
           >
             <Link href={`/blog/posts/${slugify(post.title)}`}>
               <h3 className="pb-2 font-bold">{post.title}</h3>
-              <p>{post.content}</p>
               <p className="text-sm">{post.createdAt.toDateString()}</p>
             </Link>
           </li>

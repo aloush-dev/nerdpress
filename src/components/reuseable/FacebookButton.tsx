@@ -10,7 +10,10 @@ export function FacebookButton({
 }) {
   return (
     <div className={`text-${colour} text-${size} p-4`}>
-      <Link href="https://www.facebook.com/people/Reconnect-Reiki/100089819217632/">
+      <Link
+        target="_blank"
+        href="https://www.facebook.com/people/Reconnect-Reiki/100089819217632/"
+      >
         <PiFacebookLogo />
       </Link>
     </div>

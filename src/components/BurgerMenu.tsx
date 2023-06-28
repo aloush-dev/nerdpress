@@ -90,13 +90,7 @@ const BurgerMenu = ({ currentPage }: { currentPage: string }) => {
                 Sign Out
               </button>
             ) : (
-              <button
-                onClick={() => {
-                  void signIn();
-                }}
-              >
-                Sign in
-              </button>
+              ""
             )}
           </div>
 

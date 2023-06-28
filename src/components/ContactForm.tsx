@@ -1,4 +1,3 @@
-import { Heading } from "./reuseable/Heading";
 import { useSession } from "next-auth/react";
 import {
   FormEvent,
@@ -43,12 +42,9 @@ function Form() {
     e.preventDefault();
   }
 
-  if (session.status !== "authenticated") return null;
-
   return (
     <>
-      <Heading text="Contact Me" />
-      <form onSubmit={handleSubmit} className="mx-auto flex flex-col gap-4 p-4">
+      <form onSubmit={handleSubmit} className="flex w-full flex-col gap-4 p-4">
         <input
           style={{ height: 0 }}
           value={userName}

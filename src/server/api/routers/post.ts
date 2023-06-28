@@ -10,19 +10,19 @@ export const postRouter = createTRPCRouter({
     return ctx.prisma.post.findMany();
   }),
   getPostById: publicProcedure
-    .input(z.object({ postId: z.string() }))
-    .query(({ input: { postId }, ctx }) => {
-      return ctx.prisma.post.findUnique({
-        where: { id: postId },
+    .input(z.object({ slug: z.string() }))
+    .query(({ input: { slug }, ctx }) => {
+      return ctx.prisma.post.findFirst({
+        where: { slug: slug },
       });
     }),
   create: protectedProcedure
-    .input(z.object({ title: z.string(), content: z.string() }))
-    .mutation(async ({ input: { title, content }, ctx }) => {
-      const post = await ctx.prisma.post.create({
-        data: { title, content, userId: ctx.session.user.id },
+    .input(
+      z.object({ title: z.string(), slug: z.string(), content: z.string() })
+    )
+    .mutation(({ input: { title, slug, content }, ctx }) => {
+      return ctx.prisma.post.create({
+        data: { title, slug, content, userId: ctx.session.user.id },
       });
-
-      return post;
     }),
 });

@@ -1,8 +1,6 @@
-import { ContactForm } from "~/components/ContactForm";
+import { ContactHero } from "~/components/ContactHero";
 import { Hero } from "~/components/Hero";
 import { LatestBlogPosts } from "~/components/blog/LatestBlogPosts";
-import { FacebookButton } from "~/components/reuseable/FacebookButton";
-import { InstaButton } from "~/components/reuseable/InstaButton";
 
 export default function Home() {
   return (
@@ -12,11 +10,7 @@ export default function Home() {
       </h2>
       <Hero />
       <LatestBlogPosts />
-      <div className="flex justify-center">
-        <InstaButton colour="[#8b635c]" size="4xl" />
-        <FacebookButton colour="[#8b635c]" size="4xl" />
-      </div>
-      <ContactForm />
+      <ContactHero />
     </div>
   );
 }

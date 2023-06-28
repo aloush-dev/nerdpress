@@ -10,7 +10,10 @@ export function InstaButton({
 }) {
   return (
     <div className={`text-${colour} text-${size} p-4`}>
-      <Link href="https://www.instagram.com/reconnectreiki2023/">
+      <Link
+        target="_blank"
+        href="https://www.instagram.com/reconnectreiki2023/"
+      >
         <PiInstagramLogo />
       </Link>
     </div>

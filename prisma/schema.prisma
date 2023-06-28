@@ -16,6 +16,7 @@ model Post {
     userId    String
     title     String
     content   String
+    slug      String
     createdAt DateTime @default(now())
 
     user User @relation(fields: [userId], references: [id])
@@ -29,6 +30,17 @@ model Service {
     title       String
     price       Int
     description String
+
+    user User @relation(fields: [userId], references: [id])
+
+    @@index([userId])
+}
+
+model Faqs {
+    id       Int    @id @default(autoincrement())
+    userId   String
+    question String
+    answer   String
 
     user User @relation(fields: [userId], references: [id])
 
@@ -86,6 +98,7 @@ model User {
     // Non-Next Auth
     posts   Post[]
     Service Service[]
+    Faqs    Faqs[]
 }
 
 model VerificationToken {

@@ -1,19 +1,10 @@
 import { useSession } from "next-auth/react";
-import {
-  FormEvent,
-  useCallback,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import { FormEvent, useRef, useState } from "react";
 import { api } from "~/utils/api";
 import { Button } from "../reuseable/Button";
-
-function updateTextAreaSize(textArea?: HTMLTextAreaElement) {
-  if (textArea == null) return;
-  textArea.style.height = "0";
-  textArea.style.height = `${textArea?.scrollHeight}px`;
-}
+import { slugify } from "~/utils/utils";
+import QuillEditor from "../TextEditor";
+import DOMPurify from "dompurify";
 
 export function NewBlogPost() {
   const session = useSession();
@@ -25,17 +16,7 @@ export function NewBlogPost() {
 function Form() {
   const [titleInputValue, setTitleInputValue] = useState("");
   const [contentInputValue, setContentInputValue] = useState("");
-  const textAreaRef = useRef<HTMLTextAreaElement>();
   const session = useSession();
-
-  const inputRef = useCallback((textArea: HTMLTextAreaElement) => {
-    updateTextAreaSize(textArea);
-    textAreaRef.current = textArea;
-  }, []);
-
-  useLayoutEffect(() => {
-    updateTextAreaSize(textAreaRef.current);
-  }, [contentInputValue]);
 
   const createPost = api.post.create.useMutation({
     onSuccess: (newPost) => {
@@ -43,12 +24,21 @@ function Form() {
       setTitleInputValue("");
       setContentInputValue("");
     },
+    onError: (err) => {
+      console.log(err);
+    },
   });
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    const titleSlug = slugify(titleInputValue);
+    const sanitizedHTML = DOMPurify.sanitize(contentInputValue);
 
-    createPost.mutate({ title: titleInputValue, content: contentInputValue });
+    createPost.mutate({
+      title: titleInputValue,
+      slug: titleSlug,
+      content: sanitizedHTML,
+    });
   }
 
   if (session.status !== "authenticated") return null;
@@ -62,16 +52,11 @@ function Form() {
         style={{ height: 0 }}
         value={titleInputValue}
         onChange={(e) => setTitleInputValue(e.target.value)}
-        className="p-4 text-lg"
+        className="p-4 text-lg text-black"
         placeholder="blog title"
       />
-      <textarea
-        ref={inputRef}
-        value={contentInputValue}
-        onChange={(e) => setContentInputValue(e.target.value)}
-        className="flex-grow resize-none overflow-hidden p-4 text-lg"
-        placeholder="Content here"
-      />
+
+      <QuillEditor setContentInputValue={setContentInputValue} />
 
       <Button text="Submit" />
     </form>

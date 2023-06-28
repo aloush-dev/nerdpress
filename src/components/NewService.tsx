@@ -7,6 +7,7 @@ import {
   useState,
 } from "react";
 import { api } from "~/utils/api";
+import { Button } from "./reuseable/Button";
 
 function updateTextAreaSize(textArea?: HTMLTextAreaElement) {
   if (textArea == null) return;
@@ -14,7 +15,7 @@ function updateTextAreaSize(textArea?: HTMLTextAreaElement) {
   textArea.style.height = `${textArea?.scrollHeight}px`;
 }
 
-export default function AdminServices() {
+export function NewService() {
   const session = useSession();
   if (session.status !== "authenticated") return;
 
@@ -59,7 +60,6 @@ function Form() {
 
   return (
     <>
-      <h3>Add Service</h3>
       <form
         onSubmit={handleSubmit}
         className="mx-auto flex flex-col gap-4 p-8 "
@@ -94,7 +94,7 @@ function Form() {
           placeholder="description here"
         />
 
-        <button>Submit</button>
+        <Button text="Submit" />
       </form>
     </>
   );

@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.container {
+  @apply mx-auto max-w-4xl;
+  background-color: #f8f2e3;
+}
+
+.full-width {
+  width: w-screen;
+}

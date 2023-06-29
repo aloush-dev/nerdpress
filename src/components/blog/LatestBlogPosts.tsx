@@ -12,7 +12,7 @@ export function LatestBlogPosts() {
       <ul className="flex flex-wrap justify-center">
         {data?.map((post) => (
           <li
-            className="m-4 w-50 bg-[#e3cda0]
+            className="w-50 m-4 bg-[#e3cda0]
            p-4"
             key={post.id}
           >

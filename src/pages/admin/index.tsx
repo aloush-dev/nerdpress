@@ -28,21 +28,21 @@ export default function AdminPanel() {
         <Heading text="Admin Panel" />
 
         <div className="bg-theme-green text-center text-theme-text-light">
-          New Blog Post
+          <Heading text="New Blog Post" />
           <NewBlogPost />
         </div>
 
-        <div>
-          New Service
+        <div className="text-center text-theme-text-2">
+          <Heading text="New Service" />
           <NewService />
         </div>
 
-        <div>
-          New Faq
+        <div className="bg-theme-green text-center text-theme-text-light">
+          <Heading text="New FAQ" />
           <NewFaq />
         </div>
 
-        <div>
+        <div className="flex justify-center p-8">
           {user != null ? (
             <Button
               onClick={() => {
@@ -51,12 +51,7 @@ export default function AdminPanel() {
               text="Sign Out"
             />
           ) : (
-            <Button
-              onClick={() => {
-                void signIn();
-              }}
-              text="Sign In"
-            />
+            ""
           )}
         </div>
       </AdminOnly>

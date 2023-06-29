@@ -19,7 +19,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className="min-h-screen flex w-full flex-col bg-theme-light-bg">
+      <main className="flex w-full flex-col bg-theme-light-bg">
         <Component {...pageProps} />
       </main>
       <Footer />

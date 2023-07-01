@@ -7,6 +7,7 @@ import {
   useState,
 } from "react";
 import { Button } from "./reuseable/Button";
+import { api } from "~/utils/api";
 
 function updateTextAreaSize(textArea?: HTMLTextAreaElement) {
   if (textArea == null) return;
@@ -15,19 +16,14 @@ function updateTextAreaSize(textArea?: HTMLTextAreaElement) {
 }
 
 export function ContactForm() {
-//   const session = useSession();
-//   if (session.status !== "authenticated") return;
-
   return <Form />;
 }
 
 function Form() {
   const [userEmail, setUserEmail] = useState("");
   const [userName, setUserName] = useState("");
-  const [userSubject, setUserSubject] = useState("");
   const [userMessage, setUserMessage] = useState("");
   const textAreaRef = useRef<HTMLTextAreaElement>();
-  const session = useSession();
 
   const inputRef = useCallback((textArea: HTMLTextAreaElement) => {
     updateTextAreaSize(textArea);
@@ -38,9 +34,23 @@ function Form() {
     updateTextAreaSize(textAreaRef.current);
   }, [userMessage]);
 
-  function handleSubmit(e: FormEvent) {
+  const contactFormApi = api.contact.create.useMutation({
+    onSuccess: () => {
+      setUserEmail("");
+      setUserName("");
+      setUserMessage("");
+    },
+  });
+
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-  }
+
+    contactFormApi.mutate({
+      name: userName,
+      email: userEmail,
+      message: userMessage,
+    });
+  };
 
   return (
     <>
@@ -59,13 +69,7 @@ function Form() {
           className="p-4 text-lg"
           placeholder="your email"
         />
-        <input
-          style={{ height: 0 }}
-          value={userSubject}
-          onChange={(e) => setUserSubject(e.target.value)}
-          className="p-4 text-lg"
-          placeholder="email subject"
-        />
+
         <textarea
           ref={inputRef}
           value={userMessage}

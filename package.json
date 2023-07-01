@@ -37,6 +37,7 @@
     "@types/dompurify": "^3.0.2",
     "@types/eslint": "^8.37.0",
     "@types/node": "^18.16.0",
+    "@types/nodemailer": "^6.4.8",
     "@types/prettier": "^2.7.2",
     "@types/quill": "^2.0.10",
     "@types/react": "^18.2.6",

@@ -4,13 +4,15 @@ import { LatestBlogPosts } from "~/components/blog/LatestBlogPosts";
 
 export default function Home() {
   return (
-    <div className="container flex flex-col text-theme-text-2">
+    <div className="container flex flex-col text-theme-text-2 md:mx-auto md:max-w-2xl">
       <h2 className="p-8 text-center text-4xl font-black">
         Hello and welcome to Reconnect Reiki.
       </h2>
       <Hero />
-      <LatestBlogPosts />
-      <ContactHero />
+      <div className="">
+        <LatestBlogPosts />
+        <ContactHero />
+      </div>
     </div>
   );
 }

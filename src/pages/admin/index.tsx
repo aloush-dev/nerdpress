@@ -23,7 +23,7 @@ export default function AdminPanel() {
     );
 
   return (
-    <>
+    <div className="md:max-w-4xl flex flex-col justify-center">
       <AdminOnly>
         <Heading text="Admin Panel" />
 
@@ -55,6 +55,6 @@ export default function AdminPanel() {
           )}
         </div>
       </AdminOnly>
-    </>
+    </div>
   );
 }

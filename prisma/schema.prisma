@@ -15,7 +15,7 @@ model Post {
     id        String   @id @default(uuid())
     userId    String
     title     String
-    content   String
+    content   String   @db.Text
     slug      String
     createdAt DateTime @default(now())
 
@@ -29,7 +29,7 @@ model Service {
     userId      String
     title       String
     price       Int
-    description String
+    description String @db.Text
 
     user User @relation(fields: [userId], references: [id])
 
@@ -40,7 +40,7 @@ model Faqs {
     id       Int    @id @default(autoincrement())
     userId   String
     question String
-    answer   String
+    answer   String @db.Text
 
     user User @relation(fields: [userId], references: [id])
 

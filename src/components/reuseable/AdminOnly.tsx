@@ -11,5 +11,5 @@ export default function AdminOnly({ children }: Props) {
 
   if (user?.admin) return <>{children}</>;
 
-  return <p>Not Authorised</p>;
+  return <p>You do not have access for that</p>;
 }

@@ -25,11 +25,12 @@ model Post {
 }
 
 model Service {
-    id          Int    @id @default(autoincrement())
-    userId      String
-    title       String
-    price       Int
-    description String @db.Text
+    id              Int    @id @default(autoincrement())
+    userId          String
+    title           String
+    price           Int
+    description     String @db.Text
+    displayPosition Int    @default(0)
 
     user User @relation(fields: [userId], references: [id])
 
@@ -41,6 +42,7 @@ model Faqs {
     userId   String
     question String
     answer   String @db.Text
+    displayPosition Int    @default(0)
 
     user User @relation(fields: [userId], references: [id])
 

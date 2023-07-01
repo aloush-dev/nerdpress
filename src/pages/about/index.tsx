@@ -22,7 +22,6 @@ export default function About() {
           Reiki I fell in love with the peace and relaxation it brought to my
           life and started to research the practice more.
         </p>
-        <br></br>
         <p>
           After the very sudden passing of my lovely Mum two years ago, I
           started to reevaluate my life, and this led to me finding a fantastic

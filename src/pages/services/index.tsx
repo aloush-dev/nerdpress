@@ -4,6 +4,7 @@ import { api } from "~/utils/api";
 export default function Services() {
   const { data } = api.service.getAll.useQuery();
 
+
   return (
     <>
       <h2 className="p-8 text-center text-4xl font-black">Services</h2>

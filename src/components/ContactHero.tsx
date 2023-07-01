@@ -5,11 +5,11 @@ import { ContactForm } from "~/components/ContactForm";
 
 export function ContactHero() {
   return (
-    <div >
+    <div>
       <Heading text="Contact Me" />
       <div className="flex justify-center">
-        <InstaButton colour="[#8b635c]" size="4xl" />
-        <FacebookButton colour="[#8b635c]" size="4xl" />
+        <InstaButton colour="[#8b635c]" size="4xl" padding="p-4" />
+        <FacebookButton colour="[#8b635c]" size="4xl" padding="p-4" />
       </div>
       <ContactForm />
     </div>

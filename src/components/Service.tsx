@@ -1,5 +1,3 @@
-import { useSession } from "next-auth/react";
-
 export function Service({
   title,
   price,
@@ -9,12 +7,11 @@ export function Service({
   price: number;
   description: string;
 }) {
-  const session = useSession();
 
   return (
     <div className="w-80 bg-[#83948e] p-6 text-[#fbf2e4]">
       <h3 className="pb-2 font-bold" >{title.toUpperCase()}</h3>
-      <p className="pb-2 text-2xl" >£{price}</p>
+      <p className="pb-2 text-2xl " >£{price}</p>
       <p>{description}</p>
     </div>
   );

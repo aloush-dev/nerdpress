@@ -19,9 +19,12 @@ export default function SingleBlogPost() {
     <>
       <Heading text={data?.title as string} />
       <div className="text-center">
-        <div>{data?.createdAt.toDateString()}</div>
+        <div className="m-4 bg-theme-orange p-2 font-extrabold text-white">
+          {data?.createdAt.toDateString()}
+        </div>
 
         <div
+          className="m-4 bg-theme-white p-4"
           dangerouslySetInnerHTML={{ __html: data?.content as string }}
         ></div>
       </div>

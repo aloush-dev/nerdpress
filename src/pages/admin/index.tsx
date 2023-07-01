@@ -3,6 +3,7 @@ import { NewFaq } from "~/components/NewFaq";
 import { NewService } from "~/components/NewService";
 import { NewBlogPost } from "~/components/blog/NewBlogPost";
 import AdminOnly from "~/components/reuseable/AdminOnly";
+import { AdminPanelButtons } from "~/components/reuseable/AdminPanelButtons";
 import { Button } from "~/components/reuseable/Button";
 import { Heading } from "~/components/reuseable/Heading";
 
@@ -23,18 +24,15 @@ export default function AdminPanel() {
     );
 
   return (
-    <div className="md:max-w-4xl flex flex-col justify-center">
+    <div className="flex flex-col justify-center md:max-w-4xl">
       <AdminOnly>
         <Heading text="Admin Panel" />
+
+        <AdminPanelButtons />
 
         <div className="bg-theme-green text-center text-theme-text-light">
           <Heading text="New Blog Post" />
           <NewBlogPost />
-        </div>
-
-        <div className="text-center text-theme-text-2">
-          <Heading text="New Service" />
-          <NewService />
         </div>
 
         <div className="bg-theme-green text-center text-theme-text-light">

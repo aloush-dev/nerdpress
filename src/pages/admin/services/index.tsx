@@ -11,7 +11,7 @@ export default function AdminServicePage() {
   return (
     <>
       <AdminOnly>
-        <Heading text="Admin Panel Services" />
+        <Heading text="Admin Panel - Services" />
         <AdminPanelButtons />
         <div className="bg-theme-green text-center ">
           <Heading text="New Service" colour="theme-text-1" />

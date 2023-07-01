@@ -6,8 +6,8 @@ export function AdminPanelButtons() {
       <div className="flex justify-center gap-2 p-4">
         <Button text="Home" href="/admin" />
         <Button text="Services" href="/admin/services" />
-        <Button text="Faqs" />
-        <Button text="Blog" />
+        <Button text="Faqs" href="/admin/faqs" />
+        <Button text="Blog" href="/admin/blog" />
       </div>
     </>
   );

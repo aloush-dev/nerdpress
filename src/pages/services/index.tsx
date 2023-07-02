@@ -8,7 +8,7 @@ export default function Services() {
   return (
     <>
       <Heading text="Services" />
-      <div className="flex flex-wrap items-center justify-center gap-10 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 p-4">
         {data?.map((service) => {
           return (
             <Service

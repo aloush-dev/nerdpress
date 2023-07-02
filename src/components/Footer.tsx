@@ -10,7 +10,7 @@ const pacifico = Pacifico({
 
 export function Footer() {
   return (
-    <div className="bg-[#83948e] text-[#fbf2e4]">
+    <div className="bg-theme-header text-[#fbf2e4]">
       <div className="flex flex-col text-center">
         <div className={`${pacifico.className} p-6 text-4xl `}>
           Reconnect Reiki

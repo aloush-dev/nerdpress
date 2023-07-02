@@ -15,11 +15,11 @@ const MyApp: AppType<{ session: Session | null }> = ({
     <SessionProvider session={session}>
       <Head>
         <title>Reconnect Reiki</title>
-        <meta name="description" content="whatever you want" />
+        <meta name="description" content="Reconnect Reiki by Caroline" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className="flex min-h-screen w-full flex-col bg-theme-light-bg">
+      <main className="flex min-h-screen w-full flex-col bg-theme-background-light">
         <Component {...pageProps} />
       </main>
       <Footer />

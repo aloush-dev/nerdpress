@@ -10,7 +10,7 @@ export function Button({
   href?: string;
 }) {
   return (
-    <div className="flex items-center justify-center bg-[#8b635c] p-4 text-xl font-bold text-white">
+    <div className="flex items-center justify-center bg-theme-accent p-4 text-xl font-bold text-white">
       {href ? (
         <Link href={`${href}`}>{text}</Link>
       ) : (

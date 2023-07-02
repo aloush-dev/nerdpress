@@ -14,7 +14,7 @@ export function Header() {
   const currentPage = router.pathname.split("/")[1] ?? "";
   return (
     <header
-      className={`sticky top-0 z-10 flex bg-theme-header p-4 text-theme-text-1 `}
+      className={`sticky top-0 z-10 flex bg-theme-header p-4 text-theme-text-primary `}
     >
       <div className="mx-auto flex w-full items-center justify-between px-4 md:max-w-4xl">
         <div>

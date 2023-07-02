@@ -24,6 +24,17 @@ model Post {
     @@index([userId])
 }
 
+model Testimonials {
+    id        String   @id @default(uuid())
+    userId    String
+    content   String   @db.Text
+    createdAt DateTime @default(now())
+    
+    user      User     @relation(fields: [userId], references: [id])
+
+    @@index([userId])
+}
+
 model Service {
     id              Int    @id @default(autoincrement())
     userId          String
@@ -38,10 +49,10 @@ model Service {
 }
 
 model Faqs {
-    id       Int    @id @default(autoincrement())
-    userId   String
-    question String
-    answer   String @db.Text
+    id              Int    @id @default(autoincrement())
+    userId          String
+    question        String
+    answer          String @db.Text
     displayPosition Int    @default(0)
 
     user User @relation(fields: [userId], references: [id])
@@ -98,9 +109,10 @@ model User {
     sessions      Session[]
 
     // Non-Next Auth
-    posts   Post[]
-    Service Service[]
-    Faqs    Faqs[]
+    posts        Post[]
+    Service      Service[]
+    Faqs         Faqs[]
+    Testimonials Testimonials[]
 }
 
 model VerificationToken {

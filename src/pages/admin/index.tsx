@@ -30,16 +30,6 @@ export default function AdminPanel() {
 
         <AdminPanelButtons />
 
-        <div className="bg-theme-green text-center text-theme-text-light">
-          <Heading text="New Blog Post" />
-          <NewBlogPost />
-        </div>
-
-        <div className="bg-theme-green text-center text-theme-text-light">
-          <Heading text="New FAQ" />
-          <NewFaq />
-        </div>
-
         <div className="flex justify-center p-8">
           {user != null ? (
             <Button

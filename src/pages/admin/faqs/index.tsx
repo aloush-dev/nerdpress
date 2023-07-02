@@ -1,4 +1,4 @@
-import { NewFaq } from "~/components/NewFaq";
+import { NewFaq } from "~/components/admin/NewFaq";
 import AdminOnly from "~/components/reuseable/AdminOnly";
 import { AdminPanelButtons } from "~/components/reuseable/AdminPanelButtons";
 import { Heading } from "~/components/reuseable/Heading";

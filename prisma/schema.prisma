@@ -28,8 +28,9 @@ model Testimonials {
     id        String   @id @default(uuid())
     userId    String
     content   String   @db.Text
+    approved  Boolean  @default(false)
+    featured  Boolean  @default(false)
     createdAt DateTime @default(now())
-    
     user      User     @relation(fields: [userId], references: [id])
 
     @@index([userId])

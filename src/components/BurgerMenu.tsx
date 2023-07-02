@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { Button } from "./reuseable/Button";
 
 const BurgerMenu = ({ currentPage }: { currentPage: string }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -81,12 +82,49 @@ const BurgerMenu = ({ currentPage }: { currentPage: string }) => {
           </Link>
 
           <Link
+            className={`${currentPage === "testimonials" ? "border-b-2" : ""}`}
+            onClick={toggleMenu}
+            href={`/testimonials`}
+          >
+            Testimonials
+          </Link>
+
+          <Link
             className={`${currentPage === "faqs" ? "border-b-2" : ""}`}
             onClick={toggleMenu}
             href={`/faqs`}
           >
             FAQs
           </Link>
+
+          {user ? (
+            user.admin ? (
+              <Button
+                padding="p-2"
+                onClick={toggleMenu}
+                href="/admin"
+                text="Admin"
+              />
+            ) : (
+              <Button
+                padding="p-2"
+                text="Sign Out"
+                onClick={() => {
+                  toggleMenu();
+                  void signOut();
+                }}
+              />
+            )
+          ) : (
+            <Button
+              padding="p-2"
+              text="Sign In"
+              onClick={() => {
+                toggleMenu();
+                void signIn();
+              }}
+            />
+          )}
         </div>
       </div>
     </div>

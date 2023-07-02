@@ -1,4 +1,18 @@
+import { Faq } from "~/components/Faq";
+import { Heading } from "~/components/reuseable/Heading";
+import { api } from "~/utils/api";
+
 export default function Faqs() {
-    return <h2>FAQs</h2>;
-  }
-  
+  const { data } = api.faqs.getAll.useQuery();
+
+  return (
+    <>
+      <Heading text="Frequently Asked Questions" />
+      <ul>
+        {data?.map((faq) => {
+          return <Faq key={faq.id} data={faq} />;
+        })}
+      </ul>
+    </>
+  );
+}

@@ -1,14 +1,14 @@
 import { Service } from "~/components/Service";
+import { Heading } from "~/components/reuseable/Heading";
 import { api } from "~/utils/api";
 
 export default function Services() {
   const { data } = api.service.getAll.useQuery();
 
-
   return (
     <>
-      <h2 className="p-8 text-center text-4xl font-black">Services</h2>
-      <div className="flex flex-col items-center justify-center gap-10 p-4">
+      <Heading text="Services" />
+      <div className="flex flex-wrap items-center justify-center gap-10 p-4">
         {data?.map((service) => {
           return (
             <Service
@@ -23,4 +23,3 @@ export default function Services() {
     </>
   );
 }
-

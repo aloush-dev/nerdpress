@@ -1,7 +1,4 @@
 import { signIn, signOut, useSession } from "next-auth/react";
-import { NewFaq } from "~/components/NewFaq";
-import { NewService } from "~/components/NewService";
-import { NewBlogPost } from "~/components/blog/NewBlogPost";
 import AdminOnly from "~/components/reuseable/AdminOnly";
 import { AdminPanelButtons } from "~/components/reuseable/AdminPanelButtons";
 import { Button } from "~/components/reuseable/Button";

@@ -3,7 +3,7 @@ import { FormEvent, useRef, useState } from "react";
 import { api } from "~/utils/api";
 import { Button } from "../reuseable/Button";
 import { slugify } from "~/utils/utils";
-import QuillEditor from "../TextEditor";
+import QuillEditor from "../admin/TextEditor";
 import DOMPurify from "dompurify";
 
 export function NewBlogPost() {

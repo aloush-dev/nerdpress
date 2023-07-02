@@ -7,7 +7,7 @@ import {
   useState,
 } from "react";
 import { api } from "~/utils/api";
-import { Button } from "./reuseable/Button";
+import { Button } from "../reuseable/Button";
 
 function updateTextAreaSize(textArea?: HTMLTextAreaElement) {
   if (textArea == null) return;

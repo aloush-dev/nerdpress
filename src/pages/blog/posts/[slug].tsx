@@ -18,7 +18,7 @@ export default function SingleBlogPost() {
   return (
     <>
       <Heading text={data?.title as string} />
-      <div className="text-center">
+      <div className="mx-auto max-w-80 text-center">
         <div className="m-4 bg-theme-orange p-2 font-extrabold text-white">
           {data?.createdAt.toDateString()}
         </div>

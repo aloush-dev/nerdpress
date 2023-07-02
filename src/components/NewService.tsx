@@ -1,11 +1,6 @@
 import { useSession } from "next-auth/react";
-import {
-  FormEvent,
-  useCallback,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useLayoutEffect, useRef, useState } from "react";
+import type { FormEvent } from "react";
 import { api } from "~/utils/api";
 import { Button } from "./reuseable/Button";
 
@@ -17,7 +12,7 @@ function updateTextAreaSize(textArea?: HTMLTextAreaElement) {
 
 export function NewService() {
   const session = useSession();
-  if (session.status !== "authenticated") return;
+  if (session.status !== "authenticated") return null;
 
   return <Form />;
 }

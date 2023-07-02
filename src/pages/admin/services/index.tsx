@@ -6,7 +6,7 @@ import { Heading } from "~/components/reuseable/Heading";
 import { api } from "~/utils/api";
 
 export default function AdminServicePage() {
-  const { data } = api.service.getAll.useQuery();
+  const { data, refetch } = api.service.getAll.useQuery();
 
   return (
     <>
@@ -15,19 +15,18 @@ export default function AdminServicePage() {
         <AdminPanelButtons />
         <div className="bg-theme-green text-center ">
           <Heading text="New Service" colour="theme-text-1" />
-          <NewService />
+          <NewService  />
         </div>
 
-        {data?.map((service) => {
-          return (
-            <Service
-              key={service.id}
-              title={service.title}
-              price={service.price}
-              description={service.description}
-            />
-          );
-        })}
+        <ul className="flex flex-col items-center justify-center">
+          {data?.map((service) => {
+            return (
+              <li key={service.id} className="p-2">
+                {service.title.toUpperCase()}
+              </li>
+            );
+          })}
+        </ul>
       </AdminOnly>
     </>
   );

@@ -6,3 +6,11 @@ type Service = {
   description: string;
   displayPosition: number;
 };
+
+type Faq = {
+  id: number;
+  userId: string;
+  question: string;
+  answer: string;
+  displayPosition: number;
+};

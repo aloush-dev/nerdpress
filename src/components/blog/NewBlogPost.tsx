@@ -20,7 +20,6 @@ function Form() {
 
   const createPost = api.post.create.useMutation({
     onSuccess: (newPost) => {
-      console.log(newPost);
       setTitleInputValue("");
       setContentInputValue("");
     },

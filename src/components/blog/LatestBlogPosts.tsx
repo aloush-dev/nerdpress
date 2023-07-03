@@ -7,8 +7,8 @@ export function LatestBlogPosts() {
   const { data } = api.post.getAll.useQuery();
 
   return (
-    <div className="bg-[#83948e] text-[#fbf2e4]">
-      <Heading text="Latest Blog Posts" />
+    <div className="bg-theme-header ">
+      <Heading colour="theme-text-primary" text="Latest Blog Posts" />
       <ul className="flex flex-wrap justify-center">
         {data?.map((post) => (
           <li

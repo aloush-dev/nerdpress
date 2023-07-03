@@ -18,6 +18,7 @@ model Post {
     content   String   @db.Text
     slug      String
     createdAt DateTime @default(now())
+    category  String   @default(dbgenerated("\"Uncategorised\""))
 
     user User @relation(fields: [userId], references: [id])
 

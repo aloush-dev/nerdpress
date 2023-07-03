@@ -28,16 +28,12 @@ export default function AdminPanel() {
         <AdminPanelButtons />
 
         <div className="flex justify-center p-8">
-          {user != null ? (
-            <Button
-              onClick={() => {
-                void signOut();
-              }}
-              text="Sign Out"
-            />
-          ) : (
-            ""
-          )}
+          <Button
+            onClick={() => {
+              void signOut();
+            }}
+            text="Sign Out"
+          />
         </div>
       </AdminOnly>
     </div>

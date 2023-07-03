@@ -8,10 +8,9 @@ export function Hero() {
         <Image alt="homepage image" src={HeroImage} height={0} width={0} />
       </div>
       <p className="p-6">
-        Quia modi perspiciatis sed dignissimos impedit doloribus numquam. Quos
-        qui laborum autem voluptates similique ducimus laudantium. Asperiores et
-        rerum ea ipsum voluptatibus perspiciatis. Quibusdam dolore quas
-        similique rerum. Dolores quae quas consequuntur.
+        I’m so glad you’ve found my little space, here on the internet. Dive in
+        and learn more about Reiki, and book a treatment with me. I look forward
+        to welcoming you to Reconnect Reiki.
       </p>
     </div>
   );

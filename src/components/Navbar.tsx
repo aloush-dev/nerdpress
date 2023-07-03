@@ -36,7 +36,7 @@ export function Navbar({ currentPage }: { currentPage: string }) {
         >
           Testimonials
         </Link>
-        
+
         <Link
           className={`${currentPage === "faqs" ? "border-b-2" : ""}`}
           href={`/faqs`}
@@ -44,18 +44,11 @@ export function Navbar({ currentPage }: { currentPage: string }) {
           FAQs
         </Link>
 
-
         {user ? (
           user.admin ? (
             <Button padding="p-2" href="/admin" text="Admin" />
           ) : (
-            <Button
-              padding="p-2"
-              text="Sign Out"
-              onClick={() => {
-                void signOut();
-              }}
-            />
+            <Button padding="p-2" text="Profile" href="/profile" />
           )
         ) : (
           <Button

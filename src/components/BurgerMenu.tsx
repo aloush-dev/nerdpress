@@ -106,14 +106,7 @@ const BurgerMenu = ({ currentPage }: { currentPage: string }) => {
                 text="Admin"
               />
             ) : (
-              <Button
-                padding="p-2"
-                text="Sign Out"
-                onClick={() => {
-                  toggleMenu();
-                  void signOut();
-                }}
-              />
+              <Button padding="p-2" text="Profile" href="/profile" />
             )
           ) : (
             <Button

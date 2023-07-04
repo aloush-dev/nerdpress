@@ -1,24 +1,32 @@
-import { useRouter } from "next/router";
 import { Heading } from "~/components/reuseable/Heading";
 import { api } from "~/utils/api";
 import { MdDateRange } from "react-icons/md";
 
-export default function SingleBlogPost() {
-  const router = useRouter();
-  const { slug } = router.query;
+type SingleBlogPostProps = {
+  id: string;
+  userId: string;
+  title: string;
+  content: string;
+  slug: string;
+  createdAt: Date;
+  category: string;
+};
 
-  const { data, error, isLoading } = api.post.getPostById.useQuery({
-    slug: slug as string,
-  });
+export const getServerSideProps = (context: any) => {
+  const { slug } = context.query;
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
+  const { data } = api.post.getPostById.useQuery(slug);
 
-  if (error) {
-    return <p>Error: {error.message}</p>;
-  }
+  return {
+    props: { data },
+  };
+};
 
+export default function SingleBlogPost({
+  data,
+}: {
+  data: SingleBlogPostProps;
+}) {
   if (!data) {
     return null;
   }

@@ -12,9 +12,11 @@ const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
 }) => {
+  const gaTrackingId = process.env.GA_TRACKING_ID || "";
+
   return (
     <SessionProvider session={session}>
-      <Layout>
+      <Layout gaTrackingId={gaTrackingId}>
         <Head>
           <title>Reconnect Reiki</title>
           <meta name="description" content="Reconnect Reiki by Caroline" />

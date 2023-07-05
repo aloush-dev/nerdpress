@@ -3,12 +3,14 @@ import { GoogleAnalytics } from "./GoogleAnalytics";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 
-const Layout = ({ children }: PropsWithChildren) => {
+interface LayoutProps {
+  gaTrackingId: string;
+}
+
+const Layout = ({ children, gaTrackingId }: PropsWithChildren<LayoutProps>) => {
   return (
     <>
-      {process.env.GA_TRACKING_ID && (
-        <GoogleAnalytics GA_TRACKING_ID={process.env.GA_TRACKING_ID} />
-      )}
+      {gaTrackingId && <GoogleAnalytics GA_TRACKING_ID={gaTrackingId} />}
       <Header />
       <>{children}</>
       <Footer />

@@ -17,7 +17,7 @@ export default function Testimonials() {
               key={testimonial.id}
             >
               <div>{testimonial.content}</div>
-              <div className="bg-theme-accent w-fit mt-8 p-2 text-white font-bold text-xl m-1">
+              <div className="bg-theme-accent w-fit mt-8 p-2 justify-end text-white font-bold text-xl m-1">
                 {testimonial.postedBy}
               </div>
             </li>

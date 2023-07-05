@@ -6,6 +6,7 @@ import "~/styles/globals.css";
 import Head from "next/head";
 import { Header } from "~/components/Header";
 import { Footer } from "~/components/Footer";
+import Layout from "~/components/Layout";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -13,16 +14,18 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <Head>
-        <title>Reconnect Reiki</title>
-        <meta name="description" content="Reconnect Reiki by Caroline" />
-        <link rel="icon" href="/rrfavicon.ico" />
-      </Head>
-      <Header />
-      <main className="flex min-h-screen w-full flex-col bg-theme-background-light">
-        <Component {...pageProps} />
-      </main>
-      <Footer />
+      <Layout>
+        <Head>
+          <title>Reconnect Reiki</title>
+          <meta name="description" content="Reconnect Reiki by Caroline" />
+          <link rel="icon" href="/rrfavicon.ico" />
+        </Head>
+        {/* <Header /> */}
+        <main className="flex min-h-screen w-full flex-col bg-theme-background-light">
+          <Component {...pageProps} />
+        </main>
+        {/* <Footer /> */}
+      </Layout>
     </SessionProvider>
   );
 };

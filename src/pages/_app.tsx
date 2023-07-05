@@ -4,8 +4,6 @@ import { type AppType } from "next/app";
 import { api } from "~/utils/api";
 import "~/styles/globals.css";
 import Head from "next/head";
-import { Header } from "~/components/Header";
-import { Footer } from "~/components/Footer";
 import Layout from "~/components/Layout";
 
 const MyApp: AppType<{ session: Session | null }> = ({
@@ -22,11 +20,12 @@ const MyApp: AppType<{ session: Session | null }> = ({
           <meta name="description" content="Reconnect Reiki by Caroline" />
           <link rel="icon" href="/rrfavicon.ico" />
         </Head>
-        {/* <Header /> */}
-        <main className="flex min-h-screen w-full flex-col bg-theme-background-light">
+        <div className="bg-theme-background-light">
+        <main className="container flex min-h-screen w-full flex-col bg-theme-background-light md:mx-auto md:max-w-2xl">
           <Component {...pageProps} />
         </main>
-        {/* <Footer /> */}
+
+        </div>
       </Layout>
     </SessionProvider>
   );

@@ -31,6 +31,13 @@ export function Navbar({ currentPage }: { currentPage: string }) {
         </Link>
 
         <Link
+          className={`${currentPage === "blog" ? "border-b-2" : ""}`}
+          href={`/blog`}
+        >
+          Blog
+        </Link>
+
+        <Link
           className={`${currentPage === "testimonials" ? "border-b-2" : ""}`}
           href={`/testimonials`}
         >

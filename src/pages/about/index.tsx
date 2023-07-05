@@ -15,14 +15,15 @@ export default function About() {
           style={{ borderRadius: "100%" }}
           alt="image of Caroline"
         ></Image>
-        <br></br>
-        <p>
+
+        <div className="p-4">
           I’m Caroline and live in Doncaster, South Yorkshire. I have always
           felt drawn to all things spiritual and during tough times discovered
           Reiki I fell in love with the peace and relaxation it brought to my
           life and started to research the practice more.
-        </p>
-        <p>
+        </div>
+
+        <div className="p-4">
           After the very sudden passing of my lovely Mum two years ago, I
           started to reevaluate my life, and this led to me finding a fantastic
           and very talented Reiki Master/Medium who lived very close to me, it
@@ -31,18 +32,18 @@ export default function About() {
           Level II Usui Reiki, and very excited to be starting to spread my love
           for Reiki and make it my career, as the saying goes : “If you do what
           you love, you’ll never work a day in your life”
-        </p>
-        <br></br>
-        <p>
+        </div>
+
+        <div className="p-4">
           I will be documenting my journey with Reiki here, as a blog, and
           invite you to follow my journey with me. Please do not hesitate to get
           in touch for more information on any treatments you are interested in
           Thank you for reading and please share my website with your family and
           friends
-        </p>
-        <br></br>
-        <p>With love</p>
-        <p>Caroline</p>
+        </div>
+
+        <div>With love</div>
+        <div>Caroline</div>
       </div>
     </>
   );

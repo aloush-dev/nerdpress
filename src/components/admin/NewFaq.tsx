@@ -2,7 +2,7 @@ import { useSession } from "next-auth/react";
 import {
   FormEvent,
   useCallback,
-  useLayoutEffect,
+  useEffect,
   useRef,
   useState,
 } from "react";
@@ -33,7 +33,7 @@ function Form() {
     textAreaRef.current = textArea;
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     updateTextAreaSize(textAreaRef.current);
   }, [answerValue]);
 

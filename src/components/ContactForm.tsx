@@ -1,11 +1,5 @@
 import { useSession } from "next-auth/react";
-import {
-  FormEvent,
-  useCallback,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "./reuseable/Button";
 import { api } from "~/utils/api";
 
@@ -30,7 +24,7 @@ function Form() {
     textAreaRef.current = textArea;
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     updateTextAreaSize(textAreaRef.current);
   }, [userMessage]);
 

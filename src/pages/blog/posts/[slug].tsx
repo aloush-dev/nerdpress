@@ -1,6 +1,7 @@
 import { Heading } from "~/components/reuseable/Heading";
 import { api } from "~/utils/api";
 import { MdDateRange } from "react-icons/md";
+import { useRouter } from "next/router";
 
 type SingleBlogPostProps = {
   id: string;
@@ -12,24 +13,15 @@ type SingleBlogPostProps = {
   category: string;
 };
 
-export const getServerSideProps = (context: any) => {
-  const { slug } = context.query;
+export default function SingleBlogPost() {
+  const router = useRouter();
+  const { slug } = router.query;
+  const { data, error, isLoading } = api.post.getPostById.useQuery({
+    slug: slug as string,
+  });
 
-  const { data } = api.post.getPostById.useQuery(slug);
-
-  return {
-    props: { data },
-  };
-};
-
-export default function SingleBlogPost({
-  data,
-}: {
-  data: SingleBlogPostProps;
-}) {
-  if (!data) {
-    return null;
-  }
+  if (isLoading || !data) return null;
+  if (error) console.log(error);
 
   return (
     <div className="container mx-auto">

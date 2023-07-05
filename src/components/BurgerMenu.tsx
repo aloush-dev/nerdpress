@@ -82,6 +82,14 @@ const BurgerMenu = ({ currentPage }: { currentPage: string }) => {
           </Link>
 
           <Link
+            className={`${currentPage === "blog" ? "border-b-2" : ""}`}
+            onClick={toggleMenu}
+            href={`/blog`}
+          >
+            Blog
+          </Link>
+
+          <Link
             className={`${currentPage === "testimonials" ? "border-b-2" : ""}`}
             onClick={toggleMenu}
             href={`/testimonials`}

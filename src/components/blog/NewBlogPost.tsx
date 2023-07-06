@@ -1,9 +1,9 @@
 import { useSession } from "next-auth/react";
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useState } from "react";
 import { api } from "~/utils/api";
 import { Button } from "../reuseable/Button";
 import { slugify } from "~/utils/utils";
-import QuillEditor from "../admin/TextEditor";
+import QuillEditor from "../admin/QuillEditor";
 import DOMPurify from "dompurify";
 
 export function NewBlogPost() {
@@ -16,20 +16,26 @@ export function NewBlogPost() {
 function Form() {
   const [titleInputValue, setTitleInputValue] = useState("");
   const [contentInputValue, setContentInputValue] = useState("");
+  const [disableButton, setDisableButton] = useState(false);
+  const [feedback, setFeedback] = useState("");
   const session = useSession();
 
   const createPost = api.post.create.useMutation({
-    onSuccess: (newPost) => {
+    onSuccess: () => {
       setTitleInputValue("");
       setContentInputValue("");
+      setDisableButton(false);
+      setFeedback("Post Successful");
     },
     onError: (err) => {
+      setFeedback("Something went wrong please try again");
       console.log(err);
     },
   });
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    setDisableButton(true);
     const titleSlug = slugify(titleInputValue);
     const sanitizedHTML = DOMPurify.sanitize(contentInputValue);
 
@@ -47,17 +53,20 @@ function Form() {
       onSubmit={handleSubmit}
       className="mx-auto flex flex-col gap-4 border-black p-4"
     >
+      <p>{feedback}</p>
       <input
-        style={{ height: 0 }}
         value={titleInputValue}
         onChange={(e) => setTitleInputValue(e.target.value)}
         className="p-4 text-lg text-black"
         placeholder="blog title"
       />
 
-      <QuillEditor setContentInputValue={setContentInputValue} />
+      <QuillEditor
+        contentInputValue={contentInputValue}
+        setContentInputValue={setContentInputValue}
+      />
 
-      <Button text="Submit" />
+      <Button disable={disableButton} text="Submit" />
     </form>
   );
 }

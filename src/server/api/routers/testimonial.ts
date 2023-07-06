@@ -26,4 +26,16 @@ export const testimonialRouter = createTRPCRouter({
         },
       });
     }),
+  createAdmin: protectedAdminProcedure
+    .input(z.object({ postedBy: z.string(), content: z.string() }))
+    .mutation(({ input: { postedBy, content }, ctx }) => {
+      return ctx.prisma.testimonials.create({
+        data: {
+          content,
+          postedBy,
+          approved: true,
+          user: { connect: { id: ctx.session.user?.id } },
+        },
+      });
+    }),
 });

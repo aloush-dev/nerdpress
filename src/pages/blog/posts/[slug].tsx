@@ -3,16 +3,6 @@ import { api } from "~/utils/api";
 import { MdDateRange } from "react-icons/md";
 import { useRouter } from "next/router";
 
-type SingleBlogPostProps = {
-  id: string;
-  userId: string;
-  title: string;
-  content: string;
-  slug: string;
-  createdAt: Date;
-  category: string;
-};
-
 export default function SingleBlogPost() {
   const router = useRouter();
   const { slug } = router.query;

@@ -5,11 +5,13 @@ export function Button({
   onClick,
   href,
   padding = "p-4",
+  disable,
 }: {
   text: string;
   onClick?: () => void;
   href?: string;
   padding?: string;
+  disable?: boolean;
 }) {
   return (
     <div
@@ -18,7 +20,9 @@ export function Button({
       {href ? (
         <Link href={`${href}`}>{text}</Link>
       ) : (
-        <button onClick={onClick}>{text}</button>
+        <button disabled={disable} onClick={onClick}>
+          {text}
+        </button>
       )}
     </div>
   );

@@ -25,6 +25,11 @@ model Post {
     @@index([userId])
 }
 
+model Category {
+    id   String @id @default(uuid())
+    name String
+}
+
 model Testimonials {
     id        String   @id @default(uuid())
     userId    String

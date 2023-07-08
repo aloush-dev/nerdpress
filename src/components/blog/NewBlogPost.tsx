@@ -1,5 +1,5 @@
 import { useSession } from "next-auth/react";
-import { FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { api } from "~/utils/api";
 import { Button } from "../reuseable/Button";
 import { slugify } from "~/utils/utils";
@@ -18,14 +18,21 @@ function Form() {
   const [contentInputValue, setContentInputValue] = useState("");
   const [disableButton, setDisableButton] = useState(false);
   const [feedback, setFeedback] = useState("");
+  const [category, setCategory] = useState("");
+  const [categories, setCategories] = useState<Category[] | null | undefined>(
+    []
+  );
   const session = useSession();
+
+  const { data } = api.category.getAll.useQuery();
 
   const createPost = api.post.create.useMutation({
     onSuccess: () => {
       setTitleInputValue("");
       setContentInputValue("");
+      setCategory("");
       setDisableButton(false);
-      setFeedback("Post Successful");
+      setFeedback("Post Successfull");
     },
     onError: (err) => {
       setFeedback("Something went wrong please try again");
@@ -33,33 +40,92 @@ function Form() {
     },
   });
 
+  const createCategory = api.category.create.useMutation();
+
+  function handleCategoryPost(categoryToPost: string) {
+    if (!data?.some((obj) => obj.name === categoryToPost)) {
+      createCategory.mutate({ name: categoryToPost });
+    }
+  }
+
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setDisableButton(true);
     const titleSlug = slugify(titleInputValue);
     const sanitizedHTML = DOMPurify.sanitize(contentInputValue);
+    const categoryToPost =
+      category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
+
+    handleCategoryPost(categoryToPost);
 
     createPost.mutate({
       title: titleInputValue,
       slug: titleSlug,
       content: sanitizedHTML,
+      category: categoryToPost || "Nncategorised",
     });
   }
+
+  const categoryTyping = (e: any) => {
+    setCategory(e.target.value);
+    if (category !== "") {
+      const filteredCategories = data?.filter((item) => {
+        return Object.values(item)
+          .join("")
+          .toLowerCase()
+          .includes(category.toLowerCase());
+      });
+      setCategories(filteredCategories);
+    } else {
+      setCategories(data);
+    }
+  };
 
   if (session.status !== "authenticated") return null;
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="mx-auto flex flex-col gap-4 border-black p-4"
-    >
+    <form onSubmit={handleSubmit} className="mx-auto flex flex-col gap-4  p-4">
       <p>{feedback}</p>
       <input
         value={titleInputValue}
         onChange={(e) => setTitleInputValue(e.target.value)}
         className="p-4 text-lg text-black"
-        placeholder="blog title"
+        placeholder="blog post title"
       />
+
+      <input
+        onChange={(e) => categoryTyping(e)}
+        className="p-4 text-lg text-black"
+        placeholder="category"
+        value={category}
+      />
+
+      <ul className="flex justify-center">
+        {category.length > 1
+          ? categories?.map((category) => {
+              return (
+                <li
+                  className="m-2 bg-theme-accent p-2 text-white"
+                  key={category.id}
+                >
+                  {category.name}
+                </li>
+              );
+            })
+          : data?.map((category) => {
+              return (
+                <li
+                  className="m-2 bg-theme-accent p-2 text-white"
+                  key={category.id}
+                  onClick={() => {
+                    setCategory(category.name);
+                  }}
+                >
+                  {category.name}
+                </li>
+              );
+            })}
+      </ul>
 
       <QuillEditor
         contentInputValue={contentInputValue}

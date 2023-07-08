@@ -3,13 +3,15 @@ import { Heading } from "~/components/reuseable/Heading";
 import { api } from "~/utils/api";
 
 export default function Services() {
-  const { data } = api.service.getAll.useQuery();
+  const { data, isLoading } = api.service.getAll.useQuery();
+
+  if (isLoading || !data) return <p>Loading....</p>;
 
   return (
     <>
       <Heading text="Services" />
-      <div className="grid grid-cols-1 gap-10 p-4 md:grid-cols-2 lg:grid-cols-3">
-        {data?.map((service) => {
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 p-8">
+        {data.map((service) => {
           return (
             <Service
               key={service.id}

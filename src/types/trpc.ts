@@ -24,3 +24,8 @@ type BlogPost = {
   createdAt: Date;
   category: string;
 };
+
+type Category = {
+  id: string;
+  name: string;
+};

@@ -17,13 +17,23 @@ export const postRouter = createTRPCRouter({
         where: { slug: slug },
       });
     }),
+  getPostByCategory: publicProcedure
+    .input(z.object({ name: z.string() }))
+    .query(({ input: { name }, ctx }) => {
+      return ctx.prisma.post.findMany({ where: { category: name } });
+    }),
   create: protectedAdminProcedure
     .input(
-      z.object({ title: z.string(), slug: z.string(), content: z.string() })
+      z.object({
+        title: z.string(),
+        slug: z.string(),
+        content: z.string(),
+        category: z.string(),
+      })
     )
-    .mutation(({ input: { title, slug, content }, ctx }) => {
+    .mutation(({ input: { title, slug, content, category }, ctx }) => {
       return ctx.prisma.post.create({
-        data: { title, slug, content, userId: ctx.session.user.id },
+        data: { title, slug, content, category, userId: ctx.session.user.id },
       });
     }),
   update: protectedAdminProcedure

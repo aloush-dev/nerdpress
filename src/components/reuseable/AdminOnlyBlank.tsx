@@ -5,11 +5,11 @@ type Props = {
   children: ReactNode;
 };
 
-export default function AdminOnly({ children }: Props) {
+export default function AdminOnlyBlank({ children }: Props) {
   const { data } = useSession();
   const user = data?.user;
 
   if (user?.admin) return <>{children}</>;
 
-  return <p className="text-center text-xl">You do not have access for that</p>;
+  return null;
 }

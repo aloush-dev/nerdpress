@@ -26,4 +26,12 @@ export const postRouter = createTRPCRouter({
         data: { title, slug, content, userId: ctx.session.user.id },
       });
     }),
+  update: protectedAdminProcedure
+    .input(z.object({ id: z.string(), content: z.string() }))
+    .mutation(({ input: { id, content }, ctx }) => {
+      return ctx.prisma.post.update({
+        where: { id },
+        data: { content },
+      });
+    }),
 });

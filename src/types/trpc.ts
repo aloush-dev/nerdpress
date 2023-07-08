@@ -14,3 +14,13 @@ type Faq = {
   answer: string;
   displayPosition: number;
 };
+
+type BlogPost = {
+  id: string;
+  userId: string;
+  title: string;
+  content: string;
+  slug: string;
+  createdAt: Date;
+  category: string;
+};

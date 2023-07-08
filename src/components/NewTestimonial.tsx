@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { api } from "~/utils/api";
 import { Button } from "./reuseable/Button";
-import AdminOnly from "./reuseable/AdminOnly";
+import AdminOnlyBlank from "./reuseable/AdminOnlyBlank";
 import { Heading } from "./reuseable/Heading";
 
 function updateTextAreaSize(textArea?: HTMLTextAreaElement) {
@@ -77,7 +77,7 @@ function Form() {
         onSubmit={handleSubmit}
         className="mx-auto flex flex-col gap-4 p-8 "
       >
-        <AdminOnly>
+        <AdminOnlyBlank>
           <input
             style={{ height: 0 }}
             value={nameValue}
@@ -85,7 +85,7 @@ function Form() {
             className="block border border-gray-300 bg-white p-4 text-lg"
             placeholder="Name"
           />
-        </AdminOnly>
+        </AdminOnlyBlank>
         <textarea
           ref={inputRef}
           value={contentValue}

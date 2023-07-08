@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
+import AdminOnlyBlank from "../reuseable/AdminOnlyBlank";
 
 const Editor = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -23,7 +24,7 @@ const QuillEditor = ({
 
   const modules = {
     toolbar: [
-      [{ header: "1" }, { header: "2" }, { font: [] }],
+      [{ header: "2" }],
       [{ size: [] }],
       ["bold", "italic", "underline", "strike", "blockquote"],
       [
@@ -42,7 +43,6 @@ const QuillEditor = ({
 
   const formats = [
     "header",
-    "font",
     "size",
     "bold",
     "italic",
@@ -57,7 +57,7 @@ const QuillEditor = ({
   ];
 
   return (
-    <div>
+    <AdminOnlyBlank>
       {editorLoaded && (
         <Editor
           formats={formats}
@@ -68,7 +68,7 @@ const QuillEditor = ({
           value={contentInputValue}
         />
       )}
-    </div>
+    </AdminOnlyBlank>
   );
 };
 

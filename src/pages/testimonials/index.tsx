@@ -9,15 +9,15 @@ export default function Testimonials() {
       <Heading text="Testimonials" />
       <NewTestimonial />
 
-      <ul className="grid grid-cols-1 gap-10 p-4 md:grid-cols-2 lg:grid-cols-3">
+      <ul className="">
         {data?.map((testimonial) => {
           return (
             <li
-              className="flex h-full flex-col bg-[#83948e] p-6 text-[#fbf2e4]"
+              className="relative m-4 flex h-full flex-col bg-[#83948e] p-6 pb-20 text-[#fbf2e4]"
               key={testimonial.id}
             >
               <div>{testimonial.content}</div>
-              <div className="bg-theme-accent w-fit mt-8 p-2 justify-end text-white font-bold text-xl m-1">
+              <div className="absolute bottom-0 right-0 m-4 mt-8 w-fit bg-theme-accent p-2 text-xl font-bold text-white">
                 {testimonial.postedBy}
               </div>
             </li>

@@ -15,7 +15,7 @@ model Post {
     id        String   @id @default(uuid())
     userId    String
     title     String
-    content   String   @db.Text
+    content   String   
     slug      String   @unique
     createdAt DateTime @default(now())
     category  String   @default(dbgenerated("\"Uncategorised\""))

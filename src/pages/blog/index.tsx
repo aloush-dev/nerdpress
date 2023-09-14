@@ -8,7 +8,7 @@ export default function Blog() {
   if (isLoading || !data) <p>Loading.....</p>;
   return (
     <>
-      <ul>
+      <ul className="grid lg:grid-cols-4">
         {data
           ?.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
           .map((post) => {

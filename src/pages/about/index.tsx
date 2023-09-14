@@ -6,7 +6,7 @@ export default function About() {
   return (
     <>
       <Heading text="About Me" />
-      <div className="flex flex-col items-center justify-center p-4 text-center">
+      <div className="m-4 flex flex-col items-center justify-center p-4 text-center">
         <Image
           className="p-6"
           src={profilePic}

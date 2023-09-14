@@ -41,9 +41,6 @@ export default function SingleBlogPost() {
           <div className="m-4 flex items-center justify-center bg-theme-orange p-2 font-bold text-white">
             <MdDateRange /> {data.createdAt.toDateString()}
           </div>
-          <div className="m-4 flex items-center justify-center bg-theme-orange p-2 font-bold text-white">
-            {data.category}
-          </div>
         </div>
         <AdminOnlyBlank>
           <div className="flex justify-center">

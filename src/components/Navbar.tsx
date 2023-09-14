@@ -20,7 +20,7 @@ export function Navbar({ currentPage }: { currentPage: string }) {
           className={`${currentPage === "about" ? "border-b-2" : ""}`}
           href={`/about`}
         >
-          About Me
+          About
         </Link>
 
         <Link

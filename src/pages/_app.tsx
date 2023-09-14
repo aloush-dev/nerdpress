@@ -22,7 +22,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
           <link rel="icon" href="/rrfavicon.ico" />
         </Head>
         <div className="bg-theme-background-light">
-        <main className="container flex min-h-screen w-full flex-col bg-theme-background-light md:mx-auto md:max-w-2xl">
+        <main className="container flex min-h-screen w-full flex-col bg-theme-background-light ">
           <Component {...pageProps} />
           <Analytics />
         </main>

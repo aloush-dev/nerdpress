@@ -70,7 +70,7 @@ const BurgerMenu = ({ currentPage }: { currentPage: string }) => {
             onClick={toggleMenu}
             href={`/about`}
           >
-            About Me
+            About
           </Link>
 
           <Link

@@ -9,7 +9,7 @@ export default function Testimonials() {
       <Heading text="Testimonials" />
       <NewTestimonial />
 
-      <ul className="">
+      <ul className="grid gap-8 lg:grid-cols-2 mb-8">
         {data
           ?.slice()
           .slice()

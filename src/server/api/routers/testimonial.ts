@@ -10,19 +10,30 @@ export const testimonialRouter = createTRPCRouter({
   getApprovedTestimonials: publicProcedure.query(({ ctx }) => {
     return ctx.prisma.testimonials.findMany({ where: { approved: true } });
   }),
+  getNonApprovedTestimonials: protectedAdminProcedure.query(({ ctx }) => {
+    return ctx.prisma.testimonials.findMany({ where: { approved: false } });
+  }),
   getFeaturedTestimonials: publicProcedure.query(({ ctx }) => {
     return ctx.prisma.testimonials.findMany({ where: { featured: true } });
   }),
-  create: protectedProcedure
-    .input(z.object({ content: z.string() }))
-    .mutation(({ input: { content }, ctx }) => {
-      const userName = ctx.session.user?.name || "Anonymous";
+  updateToApproved: protectedAdminProcedure
+    .input(z.object({ id: z.string(), approved: z.boolean() }))
+    .mutation(({ input: { id, approved }, ctx }) => {
+      return ctx.prisma.testimonials.update({
+        where: { id },
+        data: { approved },
+      });
+    }),
+  create: publicProcedure
+    .input(z.object({ postedBy: z.string(), content: z.string() }))
+    .mutation(({ input: { postedBy, content }, ctx }) => {
+      const userName = ctx.session?.user.name || postedBy;
 
       return ctx.prisma.testimonials.create({
         data: {
           content,
           postedBy: userName,
-          user: { connect: { id: ctx.session.user?.id } },
+          user: { connect: { id: process.env.USER_ID } },
         },
       });
     }),

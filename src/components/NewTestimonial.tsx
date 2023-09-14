@@ -13,9 +13,6 @@ function updateTextAreaSize(textArea?: HTMLTextAreaElement) {
 }
 
 export function NewTestimonial() {
-  const session = useSession();
-  if (session.status !== "authenticated") return null;
-
   return <Form />;
 }
 
@@ -23,6 +20,7 @@ function Form() {
   const [contentValue, setContentValue] = useState("");
   const [nameValue, setNameValue] = useState("");
   const [disableButtons, setDisableButtons] = useState(false);
+  const [posted, setPosted] = useState(false);
 
   const textAreaRef = useRef<HTMLTextAreaElement>();
   const session = useSession();
@@ -40,7 +38,9 @@ function Form() {
   const createTestimonial = api.testimonials.create.useMutation({
     onSuccess: () => {
       setDisableButtons(false);
+      setNameValue("");
       setContentValue("");
+      setPosted(true);
     },
   });
 
@@ -49,6 +49,7 @@ function Form() {
       setDisableButtons(false);
       setNameValue("");
       setContentValue("");
+      setPosted(true);
     },
   });
 
@@ -61,31 +62,41 @@ function Form() {
         postedBy: nameValue,
         content: contentValue,
       });
+    }
+    if (user?.name) {
+      createTestimonial.mutate({
+        postedBy: user.name,
+        content: contentValue,
+      });
     } else {
       createTestimonial.mutate({
+        postedBy: nameValue,
         content: contentValue,
       });
     }
   }
 
-  if (session.status !== "authenticated") return null;
+  if (posted)
+    return (
+      <div>
+        <Heading text="Thank You!" />
+      </div>
+    );
 
   return (
-    <>
-      <Heading text="Add new testimonial" />
+    <div className="bg-theme-header m-4">
+      <Heading text="Leave me a review!" colour="white" />
       <form
         onSubmit={handleSubmit}
         className="mx-auto flex flex-col gap-4 p-8 "
       >
-        <AdminOnlyBlank>
-          <input
-            style={{ height: 0 }}
-            value={nameValue}
-            onChange={(e) => setNameValue(e.target.value)}
-            className="block border border-gray-300 bg-white p-4 text-lg"
-            placeholder="Name"
-          />
-        </AdminOnlyBlank>
+        <input
+          style={{ height: 0 }}
+          value={nameValue}
+          onChange={(e) => setNameValue(e.target.value)}
+          className="block border border-gray-300 bg-white p-4 text-lg"
+          placeholder="Name"
+        />
         <textarea
           ref={inputRef}
           value={contentValue}
@@ -96,6 +107,6 @@ function Form() {
 
         <Button disable={disableButtons} text="Submit" />
       </form>
-    </>
+    </div>
   );
 }

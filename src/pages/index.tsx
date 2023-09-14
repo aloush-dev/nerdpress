@@ -3,6 +3,7 @@ import { Hero } from "~/components/Hero";
 import { LatestBlogPosts } from "~/components/blog/LatestBlogPosts";
 
 export default function Home() {
+
   return (
     <div className="flex flex-col text-theme-text-2 ">
       <h2 className="p-8 text-center text-4xl font-black">

@@ -9,7 +9,7 @@ export function LatestBlogPosts() {
   return (
     <div className="bg-theme-header ">
       <Heading colour="theme-text-primary" text="Latest Blog Posts" />
-      <ul className="flex flex-wrap justify-center">
+      <ul className="grid lg:grid-cols-3 justify-center">
         {data
           ?.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
           .slice(0, 3)

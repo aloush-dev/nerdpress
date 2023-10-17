@@ -9,7 +9,7 @@ export default function Testimonials() {
       <Heading text="Testimonials" />
       <NewTestimonial />
 
-      <ul className="grid gap-8 lg:grid-cols-2 mb-8">
+      <ul className="mb-8 grid gap-8 lg:grid-cols-2">
         {data
           ?.slice()
           .slice()
@@ -17,7 +17,7 @@ export default function Testimonials() {
           .map((testimonial) => {
             return (
               <li
-                className="relative m-4 flex h-full flex-col bg-[#83948e] p-6 pb-20 text-[#fbf2e4]"
+                className="relative m-4 flex h-full flex-col bg-theme-background-container p-6 pb-20 text-theme-text-light"
                 key={testimonial.id}
               >
                 <div>{testimonial.content}</div>

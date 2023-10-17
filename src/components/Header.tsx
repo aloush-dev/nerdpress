@@ -3,6 +3,7 @@ import Link from "next/link";
 import BurgerMenu from "./BurgerMenu";
 import { useRouter } from "next/router";
 import { Pacifico } from "next/font/google";
+import WebsiteConfig from "../WebsiteConfig";
 
 const pacifico = Pacifico({
   weight: "400",
@@ -19,7 +20,7 @@ export function Header() {
       <div className="mx-auto flex w-full items-center justify-between px-4 md:max-w-4xl">
         <div>
           <Link className="text-4xl font-black" href="/">
-            <h1 className={pacifico.className}>Reconnect Reiki</h1>
+            <h1 className={pacifico.className}>{WebsiteConfig.siteName}</h1>
           </Link>
         </div>
 

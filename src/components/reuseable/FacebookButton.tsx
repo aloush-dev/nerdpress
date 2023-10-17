@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { PiFacebookLogo } from "react-icons/pi";
+import WebsiteConfig from "../../WebsiteConfig";
 
 export function FacebookButton({
   colour = "black",
@@ -12,10 +13,7 @@ export function FacebookButton({
 }) {
   return (
     <div className={`text-${colour} text-${size} ${padding} `}>
-      <Link
-        target="_blank"
-        href="https://www.facebook.com/people/Reconnect-Reiki/100089819217632/"
-      >
+      <Link target="_blank" href={WebsiteConfig.socialLinks.facebook}>
         <PiFacebookLogo />
       </Link>
     </div>

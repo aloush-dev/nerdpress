@@ -1,6 +1,6 @@
 export function Heading({
   text,
-  colour = "theme-text-2",
+  colour = "theme-text-primary-dark",
 }: {
   text: string;
   colour?: string;

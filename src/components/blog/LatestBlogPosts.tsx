@@ -3,6 +3,7 @@ import { api } from "~/trpc/server";
 import { slugify } from "~/utils/utils";
 import { Heading } from "../reuseable/Heading";
 
+
 export async function LatestBlogPosts() {
   const data = await api.post.getAll.query();
 

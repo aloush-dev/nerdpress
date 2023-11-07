@@ -1,7 +1,7 @@
 'use client'
 
-import { NewTestimonial } from "~/components/NewTestimonial";
-import { Heading } from "~/components/reuseable/Heading";
+import { NewTestimonial } from "~/app/components/NewTestimonial";
+import { Heading } from "~/app/components/reuseable/Heading";
 import { api } from "../../trpc/react";
 
 export default function Testimonials() {

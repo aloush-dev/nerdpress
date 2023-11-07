@@ -2,9 +2,9 @@
 
 import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { Button } from "~/components/reuseable/Button";
-import { Heading } from "~/components/reuseable/Heading";
-import { Input } from "~/components/reuseable/Input";
+import { Button } from "~/app/components/reuseable/Button";
+import { Heading } from "~/app/components/reuseable/Heading";
+import { Input } from "~/app/components/reuseable/Input";
 import { api } from "../../trpc/react";
 
 export default function Profile() {

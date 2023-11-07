@@ -1,9 +1,9 @@
 "use client";
 
-import { NewService } from "~/components/admin/NewService";
-import AdminOnly from "~/components/admin/AdminOnly";
-import { AdminPanelButtons } from "~/components/admin/AdminPanelButtons";
-import { Heading } from "~/components/reuseable/Heading";
+import { NewService } from "~/app/components/admin/NewService";
+import AdminOnly from "~/app/components/admin/AdminOnly";
+import { AdminPanelButtons } from "~/app/components/admin/AdminPanelButtons";
+import { Heading } from "~/app/components/reuseable/Heading";
 import { api } from "../../../trpc/react";
 
 export default function AdminServicePage() {

@@ -1,13 +1,13 @@
 "use client";
 
-import { Heading } from "~/components/reuseable/Heading";
+import { Heading } from "~/app/components/reuseable/Heading";
 import { api } from "../../../../trpc/react";
 import { MdDateRange } from "react-icons/md";
-import { Button } from "~/components/reuseable/Button";
-import AdminOnlyBlank from "~/components/admin/AdminOnlyBlank";
+import { Button } from "~/app/components/reuseable/Button";
+import AdminOnlyBlank from "~/app/components/admin/AdminOnlyBlank";
 import { useState } from "react";
 import parse from "html-react-parser";
-import QuillEditor from "~/components/admin/QuillEditor";
+import QuillEditor from "~/app/components/admin/QuillEditor";
 
 export default function SingleBlogPost({ params }: { params: { slug: string } }) {
   const { data, error, isLoading, refetch } = api.post.getPostById.useQuery({

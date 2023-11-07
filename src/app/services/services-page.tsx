@@ -1,7 +1,7 @@
 'use client'
 
-import { Service } from "~/components/Service";
-import { Heading } from "~/components/reuseable/Heading";
+import { Service } from "~/app/components/Service";
+import { Heading } from "~/app/components/reuseable/Heading";
 import { api } from "../../trpc/react";
 
 export default function Services() {

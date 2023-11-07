@@ -4,7 +4,7 @@ import BurgerMenu from "./BurgerMenu";
 import { Pacifico } from "next/font/google";
 import { api } from "~/trpc/server";
 
-export const dynamic = "force-dynamic"
+export const dynamic = "force-dynamic";
 
 const pacifico = Pacifico({
   weight: "400",

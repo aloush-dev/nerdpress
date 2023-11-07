@@ -1,6 +1,6 @@
 import { Heading } from "../reuseable/Heading";
-import { FacebookButton } from "~/components/reuseable/FacebookButton";
-import { InstaButton } from "~/components/reuseable/InstaButton";
+import { FacebookButton } from "~/app/components/reuseable/FacebookButton";
+import { InstaButton } from "~/app/components/reuseable/InstaButton";
 // import { ContactForm } from "~/components/ContactForm";
 
 export function ContactHero() {

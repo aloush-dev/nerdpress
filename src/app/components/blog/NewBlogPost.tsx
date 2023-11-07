@@ -6,7 +6,7 @@ import {
   useState,
   type ChangeEvent,
 } from "react";
-import { api } from "../../trpc/react";
+import { api } from "../../../trpc/react";
 import { Button } from "../reuseable/Button";
 import { slugify } from "~/utils/utils";
 import QuillEditor from "../admin/QuillEditor";

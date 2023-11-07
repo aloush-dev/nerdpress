@@ -1,7 +1,7 @@
 'use client'
 
-import { Faq } from "~/components/Faq";
-import { Heading } from "~/components/reuseable/Heading";
+import { Faq } from "~/app/components/Faq";
+import { Heading } from "~/app/components/reuseable/Heading";
 import { api } from "../../trpc/react";
 
 export default function Faqs() {

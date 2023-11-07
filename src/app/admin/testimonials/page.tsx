@@ -1,7 +1,7 @@
 "use client";
 
-import { NewTestimonial } from "~/components/NewTestimonial";
-import AdminOnly from "~/components/admin/AdminOnly";
+import { NewTestimonial } from "~/app/components/NewTestimonial";
+import AdminOnly from "~/app/components/admin/AdminOnly";
 import { api } from "../../../trpc/react";
 
 export default function AdminTestimonials() {

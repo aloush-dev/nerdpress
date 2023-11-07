@@ -8,7 +8,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { api } from "../../trpc/react";
+import { api } from "../../../trpc/react";
 import { Button } from "../reuseable/Button";
 
 function updateTextAreaSize(textArea?: HTMLTextAreaElement) {

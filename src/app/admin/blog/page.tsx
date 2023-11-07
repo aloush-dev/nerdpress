@@ -1,7 +1,7 @@
-import { NewBlogPost } from "~/components/blog/NewBlogPost";
-import AdminOnly from "~/components/admin/AdminOnly";
-import { AdminPanelButtons } from "~/components/admin/AdminPanelButtons";
-import { Heading } from "~/components/reuseable/Heading";
+import { NewBlogPost } from "~/app/components/blog/NewBlogPost";
+import AdminOnly from "~/app/components/admin/AdminOnly";
+import { AdminPanelButtons } from "~/app/components/admin/AdminPanelButtons";
+import { Heading } from "~/app/components/reuseable/Heading";
 
 export default function AdminBlogPage() {
   return (

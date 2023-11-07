@@ -1,5 +1,5 @@
 "use client";
-import { Heading } from "~/components/reuseable/Heading";
+import { Heading } from "~/app/components/reuseable/Heading";
 import Image from "next/image";
 import profilePic from "../../../public/profileImage.jpeg";
 

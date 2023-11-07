@@ -1,3 +1,11 @@
+type Faq = {
+  id: number;
+  userId: string;
+  question: string;
+  answer: string;
+  displayPosition: number;
+};
+
 export function Faq({ data }: { data: Faq }) {
   return (
     <li className="m-4 bg-theme-header p-4 ">

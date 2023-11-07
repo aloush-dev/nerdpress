@@ -26,8 +26,8 @@ if (!websiteData) {
 }
 
 export const metadata: Metadata = {
-  title: `${websiteData.websiteName}`,
-  description: `${websiteData.websiteSubTitle as string}`,
+  title: websiteData.websiteName,
+  description: websiteData.websiteSubTitle,
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 

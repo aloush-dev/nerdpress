@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import {
   type FormEvent,
   useState,
+  type ChangeEvent,
 } from "react";
 import { api } from "../../trpc/react";
 import { Button } from "../reuseable/Button";
@@ -76,7 +77,7 @@ function Form() {
     });
   }
 
-  const categoryTyping = (e: any) => {
+  const categoryTyping = (e: ChangeEvent<HTMLInputElement>) => {
     setCategory(e.target.value);
     if (category !== "") {
       const filteredCategories = data?.filter((item) => {

@@ -21,6 +21,7 @@ if (!websiteData) {
     textColour: "#333333",
     instagramLink: "",
     facebookLink: "",
+    footerLinks: false,
   };
 }
 

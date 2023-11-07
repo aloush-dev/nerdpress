@@ -1,12 +1,20 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { type FormEvent, useState } from "react";
+import {
+  type FormEvent,
+  useState,
+} from "react";
 import { api } from "../../trpc/react";
 import { Button } from "../reuseable/Button";
 import { slugify } from "~/utils/utils";
 import QuillEditor from "../admin/QuillEditor";
 import DOMPurify from "dompurify";
+
+type Category = {
+  id: string;
+  name: string;
+};
 
 export function NewBlogPost() {
   const session = useSession();

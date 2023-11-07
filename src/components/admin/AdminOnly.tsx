@@ -1,7 +1,7 @@
 'use client'
 
 import { useSession } from "next-auth/react";
-import React, { ReactNode } from "react";
+import React, { type ReactNode } from "react";
 
 type Props = {
   children: ReactNode;

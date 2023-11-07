@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
     provider = "prisma-client-js"
 }
@@ -69,14 +66,29 @@ model Faqs {
 }
 
 model Configuration {
-    id               Int    @id @default(autoincrement())
-    websiteName      String @default("My Website")
-    backgroundColour String @default("#FFFFFF")
-    headerColour     String @default("#000000")
-    textColour       String @default("#333333")
+    id               Int     @id @default(autoincrement())
+    websiteName      String  @default("My Website")
+    websiteSubTitle  String  @default("My Websites SubTitle")
+    backgroundColour String  @default("#FFFFFF")
+    headerColour     String  @default("#000000")
+    footerColour     String  @default("#000000")
+    textColour       String  @default("#333333")
+    instagramLink    String  @default("")
+    facebookLink     String  @default("")
+    footerLinks      Boolean @default(false)
 }
 
-// Necessary for Next auth
+model NavBarLinks {
+    id           Int     @id @default(autoincrement())
+    home         Boolean @default(true)
+    about        Boolean @default(true)
+    contact      Boolean @default(true)
+    blog         Boolean @default(false)
+    services     Boolean @default(false)
+    testimonials Boolean @default(false)
+    faqs         Boolean @default(false)
+}
+
 model Account {
     id                String  @id @default(cuid())
     userId            String
@@ -116,7 +128,6 @@ model User {
     accounts      Account[]
     sessions      Session[]
 
-    // Non-Next Auth
     posts        Post[]
     Service      Service[]
     Faqs         Faqs[]

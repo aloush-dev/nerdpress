@@ -1,15 +1,15 @@
 import Link from "next/link";
-import { api } from "~/utils/api";
+import { api } from "~/trpc/server";
 import { slugify } from "~/utils/utils";
 import { Heading } from "../reuseable/Heading";
 
-export function LatestBlogPosts() {
-  const { data } = api.post.getAll.useQuery();
+export async function LatestBlogPosts() {
+  const data = await api.post.getAll.query();
 
   return (
     <div className="bg-theme-header ">
       <Heading colour="theme-text-primary" text="Latest Blog Posts" />
-      <ul className="grid lg:grid-cols-3 justify-center">
+      <ul className="grid justify-center lg:grid-cols-3">
         {data
           ?.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
           .slice(0, 3)

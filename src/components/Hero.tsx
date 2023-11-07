@@ -1,9 +1,15 @@
 import Image from "next/image";
-import HeroImage from "../../public/thehealingroom.jpeg";
+import HeroImage from "../../public/homeheroimage.jpeg";
+import { api } from "~/trpc/server";
 
-export function Hero() {
+export async function Hero() {
+  const websiteData = await api.config.getConfig.query();
+
   return (
-    <div className="flex flex-col items-center justify-center p-6 text-center">
+    <div className="flex flex-col items-center justify-center p-6 text-center text-theme-text-2">
+      <h2 className="p-8 text-center text-4xl font-black ">
+        Hello and welcome to {websiteData?.websiteName}.
+      </h2>
       <div className="border-8 border-white ">
         <Image alt="homepage image" src={HeroImage} height={0} width={0} />
       </div>

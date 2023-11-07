@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
-import AdminOnlyBlank from "../reuseable/AdminOnlyBlank";
+import AdminOnlyBlank from "./AdminOnlyBlank";
 
 const Editor = dynamic(() => import("react-quill"), { ssr: false });
 

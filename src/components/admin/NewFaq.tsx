@@ -1,12 +1,14 @@
+"use client";
+
 import { useSession } from "next-auth/react";
 import {
-  FormEvent,
+  type FormEvent,
   useCallback,
   useEffect,
   useRef,
   useState,
 } from "react";
-import { api } from "~/utils/api";
+import { api } from "../../trpc/react";
 import { Button } from "../reuseable/Button";
 
 function updateTextAreaSize(textArea?: HTMLTextAreaElement) {

@@ -1,13 +1,13 @@
 import { type Config } from "tailwindcss";
 
 export default {
-  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  content: ["./app/**/*.{js,ts,jsx,tsx,mdx}", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
         "theme-background-light": "#FFF7ED",
         "theme-header": "#92AD94",
-        "theme-accent" : "#F25F5C",
+        "theme-accent": "#F25F5C",
         "theme-text-primary": "#efd9bf",
 
         "theme-brown": "#634638",

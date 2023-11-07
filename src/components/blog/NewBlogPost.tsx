@@ -1,6 +1,8 @@
+"use client";
+
 import { useSession } from "next-auth/react";
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { api } from "~/utils/api";
+import { type FormEvent, useState } from "react";
+import { api } from "../../trpc/react";
 import { Button } from "../reuseable/Button";
 import { slugify } from "~/utils/utils";
 import QuillEditor from "../admin/QuillEditor";

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { api } from "../../trpc/server";
 import { slugify } from "~/utils/utils";
+export const dynamic = "force-dynamic"
 
 export default async function Blog() {
   const data = await api.post.getAll.query();

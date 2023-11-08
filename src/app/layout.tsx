@@ -1,35 +1,20 @@
 import { Footer } from "~/app/components/layout/Footer";
 import { Header } from "~/app/components/layout/Header";
-import type { Metadata } from "next";
 import { headers } from "next/headers";
 import "../styles/globals.css";
-
 import { TRPCReactProvider } from "~/trpc/react";
 import { Providers } from "./provider";
 import { api } from "~/trpc/server";
+export const dynamic = "force-dynamic"
 
-let websiteData = await api.config.getConfig.query();
+export async function generateMetadata() {
+  const websiteData = await api.config.getConfig.query();
 
-if (!websiteData) {
-  websiteData = {
-    id: 1,
-    websiteName: "",
-    websiteSubTitle: "",
-    backgroundColour: "#FFFFFF",
-    headerColour: "#000000",
-    footerColour: "#000000",
-    textColour: "#333333",
-    instagramLink: "",
-    facebookLink: "",
-    footerLinks: false,
+  return {
+    title: websiteData?.websiteName,
+    description: websiteData?.websiteSubTitle,
   };
 }
-
-export const metadata: Metadata = {
-  title: websiteData.websiteName,
-  description: websiteData.websiteSubTitle,
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
-};
 
 export default function RootLayout({
   children,

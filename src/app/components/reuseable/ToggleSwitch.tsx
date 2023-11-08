@@ -1,12 +1,20 @@
 "use client";
 
 import React, { useState } from "react";
+import { type NavLink } from "../layout/Navbar";
 
-export function ToggleSwitch({ defaultState }: { defaultState: boolean }) {
-  const [isChecked, setIsChecked] = useState(defaultState);
+export function ToggleSwitch({
+  link,
+  changeHandler,
+}: {
+  link: NavLink;
+  changeHandler: (link: NavLink) => void;
+}) {
+  const [isChecked, setIsChecked] = useState(link.active);
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
+    changeHandler(link);
   };
 
   return (

@@ -2,9 +2,10 @@
 import { NavBarLink } from "./NavBarLink";
 import { SignInButton } from "./SignInButton";
 
-type NavLink = {
+export type NavLink = {
+  id: number;
   name: string;
-  value: number | boolean;
+  active: boolean;
 };
 
 export function Navbar({ navLinks }: { navLinks: NavLink[] }) {
@@ -12,7 +13,7 @@ export function Navbar({ navLinks }: { navLinks: NavLink[] }) {
     <nav className="flex">
       <div className="flex items-center gap-4">
         {navLinks.map((link) => {
-          if (link.value) {
+          if (link.active) {
             return <NavBarLink key={link.name} name={link.name} />;
           }
         })}

@@ -78,61 +78,22 @@ export const configHandler = createTRPCRouter({
     return config;
   }),
   getNavBarLinks: publicProcedure.query(async ({ ctx }) => {
-    const navBarLinks = await ctx.prisma.navBarLinks.findFirst();
-
-    if (navBarLinks) {
-      const resultArray = Object.entries(navBarLinks)
-        .filter(([key, value]) => key !== "id" && value)
-        .map(([name, value]) => ({ name, value }));
-
-      return resultArray;
-    }
-
-    return [];
+    const navBarLinks = await ctx.prisma.navBarLinks.findMany();
+    return navBarLinks;
   }),
-  getAllNavBarLinks: publicProcedure.query(async ({ ctx }) => {
-    const navBarLinks = await ctx.prisma.navBarLinks.findFirst();
+  createNavBarLink: protectedAdminProcedure
+    .input(z.object({ name: z.string() }))
+    .mutation(({ input: { name }, ctx }) => {
+      return ctx.prisma.navBarLinks.create({ data: { name, active: true } });
+    }),
+  updateNavBarLink: protectedAdminProcedure
+    .input(z.object({ id: z.number(),  active: z.boolean() }))
+    .mutation(async ({ input: { id,  active }, ctx }) => {
+      const updatedLink = await ctx.prisma.navBarLinks.update({
+        where: { id },
+        data: { active },
+      });
 
-    if (navBarLinks) {
-      const resultArray = Object.entries(navBarLinks)
-        .filter(([key]) => key !== "id")
-        .map(([name, value]) => ({ name, value: value as boolean }));
-
-      return resultArray;
-    }
-
-    return [];
-  }),
-  updateNavBarLinks: protectedAdminProcedure
-    .input(
-      z.object({
-        home: z.boolean(),
-        about: z.boolean(),
-        contact: z.boolean(),
-        blog: z.boolean(),
-        services: z.boolean(),
-        testimonials: z.boolean(),
-        faqs: z.boolean(),
-      })
-    )
-    .mutation(
-      async ({
-        input: { home, about, contact, blog, services, testimonials, faqs },
-        ctx,
-      }) => {
-        const updatedNavBarLinks = await ctx.prisma.navBarLinks.update({
-          where: { id: 1 },
-          data: {
-            home,
-            about,
-            contact,
-            blog,
-            services,
-            testimonials,
-            faqs,
-          },
-        });
-        return updatedNavBarLinks;
-      }
-    ),
+      return updatedLink;
+    }),
 });

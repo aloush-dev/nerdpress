@@ -79,14 +79,9 @@ model Configuration {
 }
 
 model NavBarLinks {
-    id           Int     @id @default(autoincrement())
-    home         Boolean @default(true)
-    about        Boolean @default(true)
-    contact      Boolean @default(true)
-    blog         Boolean @default(false)
-    services     Boolean @default(false)
-    testimonials Boolean @default(false)
-    faqs         Boolean @default(false)
+    id     Int     @id @default(autoincrement())
+    name   String
+    active Boolean
 }
 
 model Account {

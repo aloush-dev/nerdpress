@@ -6,7 +6,7 @@ import { BurgerMenuLink } from "./BurgerMenuLink";
 
 type NavLink = {
   name: string;
-  value: number | boolean;
+  active: boolean;
 };
 
 const BurgerMenu = ({ navLinks }: { navLinks: NavLink[] }) => {
@@ -61,13 +61,15 @@ const BurgerMenu = ({ navLinks }: { navLinks: NavLink[] }) => {
       >
         <div className="flex flex-col items-center space-y-4">
           {navLinks.map((link) => {
-            return (
-              <BurgerMenuLink
-                key={link.name}
-                name={link.name}
-                toggleMenu={toggleMenu}
-              />
-            );
+            if (link.active) {
+              return (
+                <BurgerMenuLink
+                  key={link.name}
+                  name={link.name}
+                  toggleMenu={toggleMenu}
+                />
+              );
+            }
           })}
 
           <SignInButton />

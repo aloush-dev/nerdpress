@@ -1,13 +1,11 @@
 "use client";
 
 import { api } from "~/trpc/react";
-import { ToggleSwitch } from "../reuseable/ToggleSwitch";
 import { Input } from "../reuseable/Input";
 import { useEffect, useState } from "react";
 import { Button } from "../reuseable/Button";
 
 export default function ConfigPage() {
-  const navBarLinks = api.config.getAllNavBarLinks.useQuery();
   const websiteData = api.config.getConfig.useQuery();
   const updateWebsiteData = api.config.update.useMutation({
     onSuccess: () => {
@@ -51,15 +49,7 @@ export default function ConfigPage() {
         </div>
       </div>
 
-      <h3>Pages to Display</h3>
-      {navBarLinks.data?.map((link) => {
-        return (
-          <div key={link.name} className="flex">
-            {link.name}
-            <ToggleSwitch defaultState={link.value} />
-          </div>
-        );
-      })}
+      
     </div>
   );
 }

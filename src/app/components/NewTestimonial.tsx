@@ -1,3 +1,5 @@
+"use client";
+
 import { useSession } from "next-auth/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
@@ -83,7 +85,7 @@ function Form() {
     );
 
   return (
-    <div className="bg-theme-header m-4">
+    <div className="m-4 bg-theme-header">
       <Heading text="Leave me a review!" colour="white" />
       <form
         onSubmit={handleSubmit}

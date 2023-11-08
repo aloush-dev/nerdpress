@@ -5,7 +5,7 @@ import "../styles/globals.css";
 import { TRPCReactProvider } from "~/trpc/react";
 import { Providers } from "./provider";
 import { api } from "~/trpc/server";
-export const dynamic = "force-dynamic"
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata() {
   const websiteData = await api.config.getConfig.query();
@@ -27,9 +27,7 @@ export default function RootLayout({
         <TRPCReactProvider headers={headers()}>
           <Providers>
             <Header />
-
-            {children}
-
+            <div className="min-h-screen">{children}</div>
             <Footer />
           </Providers>
         </TRPCReactProvider>

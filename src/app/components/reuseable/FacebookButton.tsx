@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { PiFacebookLogo } from "react-icons/pi";
+import { api } from "~/trpc/server";
 
-export function FacebookButton({
+export async function FacebookButton({
   colour = "black",
   size = "0",
   padding = "p-0",
@@ -10,12 +11,11 @@ export function FacebookButton({
   size?: string;
   padding?: string;
 }) {
+  const data = await api.config.getConfig.query();
+  if (!data) return null;
   return (
     <div className={`text-${colour} text-${size} ${padding} `}>
-      <Link
-        target="_blank"
-        href="https://www.facebook.com/people/Reconnect-Reiki/100089819217632/"
-      >
+      <Link target="_blank" href={data.facebookLink}>
         <PiFacebookLogo />
       </Link>
     </div>

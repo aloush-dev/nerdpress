@@ -1,86 +1,139 @@
-// "use client";
+"use client";
 
-// import {
-//   type FormEvent,
-//   useCallback,
-//   useEffect,
-//   useRef,
-//   useState,
-// } from "react";
-// import { Button } from "./reuseable/Button";
-// import { api } from "~/utils/api";
+import { type FormEvent, type FunctionComponent, useState } from "react";
+import { TbSend } from "react-icons/tb";
 
-// function updateTextAreaSize(textArea?: HTMLTextAreaElement) {
-//   if (textArea == null) return;
-//   textArea.style.height = "0";
-//   textArea.style.height = `${textArea?.scrollHeight}px`;
-// }
+export const ContactForm: FunctionComponent = () => {
+  const inputStyle =
+    "p-4 my-4 text-black focus:outline-none focus:border-accent focus:ring-4 focus:ring-accent text-base border-accent border-2";
+  const labelStyle =
+    "text-primary-text flex flex-col justify-center m-4 text-xl";
 
-// export function ContactForm() {
-//   return <Form />;
-// }
+  const buttonStyle = {
+    default: `bg-accent text-accent-text font-bold flex justify-center items-center p-4 m-4 transition-color duration-300 ease-in-out`,
+    success: `bg-on-success text-accent-text font-bold flex justify-center items-center p-4 m-4 transition-color duration-300 ease-in-out`,
+    error: `bg-on-error text-accent-text font-bold flex justify-center items-center p-4 m-4 transition-color duration-300 ease-in-out`,
+  };
 
-// function Form() {
-//   const [userEmail, setUserEmail] = useState("");
-//   const [userName, setUserName] = useState("");
-//   const [userMessage, setUserMessage] = useState("");
-//   const textAreaRef = useRef<HTMLTextAreaElement>();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [buttonState, setButtonState] = useState("default");
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [buttonMsg, setButtonMsg] = useState("SEND");
 
-//   const inputRef = useCallback((textArea: HTMLTextAreaElement) => {
-//     updateTextAreaSize(textArea);
-//     textAreaRef.current = textArea;
-//   }, []);
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-//   useEffect(() => {
-//     updateTextAreaSize(textAreaRef.current);
-//   }, [userMessage]);
+  const onSuccess = () => {
+    setLoading(false);
+    setButtonState("success");
+    setButtonMsg("THANK YOU!");
+    setName("");
+    setEmail("");
+    setMessage("");
 
-//   const contactFormApi = api.contact.create.useMutation({
-//     onSuccess: () => {
-//       setUserEmail("");
-//       setUserName("");
-//       setUserMessage("");
-//     },
-//   });
+    setTimeout(() => {
+      setButtonState("default");
+      setButtonMsg("SEND");
+    }, 3000);
+  };
 
-//   const handleSubmit = (e: FormEvent) => {
-//     e.preventDefault();
+  const onError = () => {
+    setLoading(false);
+    setButtonState("error");
+    setErrorMsg("Could not send please try again later");
 
-//     contactFormApi.mutate({
-//       name: userName,
-//       email: userEmail,
-//       message: userMessage,
-//     });
-//   };
+    setTimeout(() => {
+      setButtonState("default");
+      setErrorMsg("");
+    }, 3000);
+  };
 
-//   return (
-//     <>
-//       <form onSubmit={handleSubmit} className="flex w-full flex-col gap-4 p-4">
-//         <input
-//           style={{ height: 0 }}
-//           value={userName}
-//           onChange={(e) => setUserName(e.target.value)}
-//           className="p-4 text-lg"
-//           placeholder="your name"
-//         />
-//         <input
-//           style={{ height: 0 }}
-//           value={userEmail}
-//           onChange={(e) => setUserEmail(e.target.value)}
-//           className="p-4 text-lg"
-//           placeholder="your email"
-//         />
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    if (!emailRegex.test(email)) {
+      setButtonState("error");
+      setErrorMsg("Please enter a valid email address");
 
-//         <textarea
-//           ref={inputRef}
-//           value={userMessage}
-//           onChange={(e) => setUserMessage(e.target.value)}
-//           className="flex-grow resize-none overflow-hidden p-4 text-lg"
-//           placeholder="what would you like to say?"
-//         />
+      setTimeout(() => {
+        setButtonState("default");
+        setErrorMsg("");
+      }, 3000);
+    } else {
+      try {
+        const response = await fetch("/api/send", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, email, message }),
+        });
 
-//         <Button text="contact" />
-//       </form>
-//     </>
-//   );
-// }
+        if (response.ok) {
+          onSuccess();
+        } else {
+          console.error("Email sending failed");
+          onError();
+        }
+      } catch (error) {
+        console.error("An error occurred", error);
+        onError();
+      }
+    }
+  };
+
+  return (
+    <>
+      <form
+        onSubmit={(e) => {
+          void handleSubmit(e);
+        }}
+        className="flex flex-col"
+      >
+        <label className={labelStyle}>
+          Name
+          <input
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+            className={inputStyle}
+            required
+          />
+        </label>
+        <label className={labelStyle}>
+          Email
+          <input
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            className={inputStyle}
+            required
+          />
+        </label>
+        <label className={labelStyle}>
+          Message
+          <textarea
+            onChange={(e) => setMessage(e.target.value)}
+            value={message}
+            className={`${inputStyle} h-60`}
+            required
+          />
+        </label>
+
+        <button
+          className={buttonStyle[buttonState as keyof typeof buttonStyle]}
+        >
+          {errorMsg ? (
+            <p className="duration-300 ease-in-out">{`${errorMsg}`}</p>
+          ) : loading ? (
+            "sending..."
+          ) : (
+            <div className="text-transition flex items-center justify-center">
+              {buttonMsg} <TbSend className="pl-2 text-2xl" />
+            </div>
+          )}
+        </button>
+      </form>
+    </>
+  );
+};

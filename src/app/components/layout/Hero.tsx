@@ -1,5 +1,5 @@
 import Image from "next/image";
-import HeroImage from "../../../public/homeheroimage.jpeg";
+import HeroImage from "../../../../public/homeheroimage.jpeg";
 import { api } from "~/trpc/server";
 
 export async function Hero() {

@@ -23,11 +23,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="flex min-h-screen w-full flex-col bg-theme-background-light ">
+      <body className="bg-theme-background-light ">
         <TRPCReactProvider headers={headers()}>
           <Providers>
             <Header />
-            <div className="min-h-screen">{children}</div>
+            <div className="min-h-screen-view">{children}</div>
             <Footer />
           </Providers>
         </TRPCReactProvider>

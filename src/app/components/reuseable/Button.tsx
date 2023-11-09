@@ -4,7 +4,7 @@ export function Button({
   text,
   onClick,
   href,
-  padding = "p-4",
+  padding = "p-0",
   disable,
 }: {
   text: string;

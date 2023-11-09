@@ -1,14 +1,14 @@
-import { Button } from "../reuseable/Button";
+import { Chip } from "../reuseable/Chip";
 
 export function AdminPanelButtons() {
   return (
     <>
-      <div className="m-4 flex flex-wrap justify-center gap-2">
-        <Button padding="px-2 py-2" text="Home" href="/admin" />
-        <Button text="Services" href="/admin/services" />
-        <Button text="Blog" href="/admin/blog" />
-        <Button text="Testimonials" href="/admin/testimonials" />
-        <Button text="Faqs" href="/admin/faqs" />
+      <div className="flex justify-center gap-2 overflow-x-auto">
+        <Chip text="Home" href="/admin" />
+        <Chip text="Services" href="/admin/services" />
+        <Chip text="Blog" href="/admin/blog" />
+        <Chip text="Testimonials" href="/admin/testimonials" />
+        <Chip text="Faqs" href="/admin/faqs" />
       </div>
     </>
   );

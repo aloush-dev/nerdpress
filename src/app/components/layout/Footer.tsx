@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import { Pacifico } from "next/font/google";
 import { InstaButton } from "../reuseable/InstaButton";
@@ -17,7 +16,7 @@ export async function Footer() {
   if (!websiteData) return null;
 
   return (
-    <div className="bg-theme-header text-[#fbf2e4]">
+    <div className="bg-theme-header text-[#fbf2e4] h-footer">
       <div className="flex flex-col text-center">
         <div className={`${pacifico.className} p-6 text-4xl `}>
           {websiteData.websiteName}

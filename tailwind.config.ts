@@ -7,6 +7,7 @@ export default {
       colors: {
         "theme-background-light": "#FFF7ED",
         "theme-header": "#92AD94",
+        "theme-burger": "#58745a",
         "theme-accent": "#F25F5C",
         "theme-text-primary": "#efd9bf",
 
@@ -19,6 +20,15 @@ export default {
         "theme-text-1": "#efd9bf",
         "theme-text-2": "#7a7a7a",
         "theme-text-light": "#fbf2e4",
+      },
+      minHeight: {
+        "screen-view": "calc(100vh - 16rem)",
+        "screen-header": "calc(100vh - 5rem)",
+        "screen-footer": "calc(100vh - 5rem)",
+      },
+      height: {
+        header: "5rem",
+        footer: "11rem",
       },
     },
   },

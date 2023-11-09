@@ -1,7 +1,7 @@
 import { Heading } from "../reuseable/Heading";
 import { FacebookButton } from "~/app/components/reuseable/FacebookButton";
 import { InstaButton } from "~/app/components/reuseable/InstaButton";
-import { ContactForm } from "./ContactForm";
+// import { ContactForm } from "./ContactForm";
 
 export function ContactHero() {
   return (
@@ -11,7 +11,7 @@ export function ContactHero() {
         <InstaButton colour="[#8b635c]" size="4xl" padding="p-4" />
         <FacebookButton colour="[#8b635c]" size="4xl" padding="p-4" />
       </div>
-      <ContactForm />
+      {/* <ContactForm /> */}
     </div>
   );
 }

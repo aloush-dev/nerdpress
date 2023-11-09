@@ -1,9 +1,16 @@
 import { Service } from "~/app/components/Service";
 import { Heading } from "~/app/components/reuseable/Heading";
 import { api } from "~/trpc/server";
+import { returnNotFound } from "~/utils/utils";
+import NotFound from "../components/NotFound";
 
 async function ServicesPage() {
   const data = await api.service.getAll.query();
+  const navLinks = await api.config.getNavBarLinks.query();
+
+  const found = returnNotFound("services", navLinks);
+
+  if (found) return <NotFound />;
 
   return (
     <>

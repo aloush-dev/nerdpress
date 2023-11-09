@@ -69,13 +69,15 @@ model Configuration {
     id               Int     @id @default(autoincrement())
     websiteName      String  @default("My Website")
     websiteSubTitle  String  @default("My Websites SubTitle")
-    backgroundColour String  @default("#FFFFFF")
-    headerColour     String  @default("#000000")
-    footerColour     String  @default("#000000")
-    textColour       String  @default("#333333")
     instagramLink    String  @default("")
     facebookLink     String  @default("")
     footerLinks      Boolean @default(false)
+}
+
+model ColourScheme {
+    id   Int    @id @default(autoincrement())
+    name String
+    hex  String
 }
 
 model NavBarLinks {

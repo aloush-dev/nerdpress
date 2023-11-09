@@ -1,3 +1,4 @@
+import { type NavLink } from "~/app/components/layout/Navbar";
 
 export function slugify(title: string): string {
   title = title.trim();
@@ -11,3 +12,8 @@ export function slugify(title: string): string {
   return title;
 }
 
+export function returnNotFound(page: string, navLinks: NavLink[]) {
+  return navLinks.find((link) => {
+    return link.name === page && !link.active;
+  });
+}

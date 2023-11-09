@@ -1,9 +1,17 @@
 import { NewTestimonial } from "~/app/components/NewTestimonial";
 import { Heading } from "~/app/components/reuseable/Heading";
 import { api } from "~/trpc/server";
+import NotFound from "../components/NotFound";
+import { returnNotFound } from "~/utils/utils";
 
-async function TestimonalPage() {
+export default async function TestimonalPage() {
   const data = await api.testimonials.getApprovedTestimonials.query();
+  const navLinks = await api.config.getNavBarLinks.query();
+
+  const found = returnNotFound("testimonials", navLinks);
+
+  if (found) return <NotFound />;
+
   return (
     <>
       <Heading text="Testimonials" />
@@ -31,5 +39,3 @@ async function TestimonalPage() {
     </>
   );
 }
-
-export default TestimonalPage;

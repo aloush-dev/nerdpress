@@ -1,10 +1,16 @@
 import Link from "next/link";
 import { api } from "../../trpc/server";
-import { slugify } from "~/utils/utils";
+import { returnNotFound, slugify } from "~/utils/utils";
+import NotFound from "../components/NotFound";
 export const dynamic = "force-dynamic"
 
 export default async function Blog() {
   const data = await api.post.getAll.query();
+  const navLinks = await api.config.getNavBarLinks.query();
+
+  const found = returnNotFound("blog", navLinks);
+
+  if (found) return <NotFound />;
 
   if (!data) <p>No posts to show</p>;
   return (

@@ -1,8 +1,16 @@
 import { Heading } from "~/app/components/reuseable/Heading";
 import Image from "next/image";
 import profilePic from "../../../public/profileImage.jpeg";
+import { returnNotFound } from "~/utils/utils";
+import NotFound from "../components/NotFound";
+import { api } from "~/trpc/server";
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const navLinks = await api.config.getNavBarLinks.query();
+
+  const found = returnNotFound("about", navLinks);
+
+  if (found) return <NotFound />;
   return (
     <div className="flex flex-col items-center justify-center">
       <Heading text="About Me" />

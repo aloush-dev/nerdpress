@@ -3,9 +3,11 @@ import { api } from "~/trpc/server";
 import { slugify } from "~/utils/utils";
 import { Heading } from "../reuseable/Heading";
 
-
 export async function LatestBlogPosts() {
   const data = await api.post.getAll.query();
+  const websiteData = await api.config.getConfig.query();
+  if (!websiteData) return null;
+  const theme = await api.config.getTheme.query({ name: websiteData.theme });
 
   return (
     <div className="bg-theme-header ">
@@ -17,7 +19,8 @@ export async function LatestBlogPosts() {
           .map((post) => {
             return (
               <li
-                className="w-50 m-4 bg-[#e3cda0]
+                style={{ backgroundColor: theme.secondaryAccent?.hex }}
+                className="w-50 m-4
            p-4"
                 key={post.id}
               >

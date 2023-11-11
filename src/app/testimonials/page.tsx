@@ -7,6 +7,9 @@ import { returnNotFound } from "~/utils/utils";
 export default async function TestimonalPage() {
   const data = await api.testimonials.getApprovedTestimonials.query();
   const navLinks = await api.config.getNavBarLinks.query();
+  const websiteData = await api.config.getConfig.query();
+  if (!websiteData) return null;
+  const theme = await api.config.getTheme.query({ name: websiteData.theme });
 
   const found = returnNotFound("testimonials", navLinks);
 
@@ -25,7 +28,8 @@ export default async function TestimonalPage() {
           .map((testimonial) => {
             return (
               <li
-                className="relative m-4 flex h-full flex-col bg-[#83948e] p-6 pb-20 text-[#fbf2e4]"
+                style={{ backgroundColor: theme.secondaryAccent?.hex }}
+                className="relative m-4 flex h-full flex-col  p-6 pb-20 "
                 key={testimonial.id}
               >
                 <div>{testimonial.content}</div>

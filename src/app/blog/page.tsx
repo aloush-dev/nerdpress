@@ -2,11 +2,14 @@ import Link from "next/link";
 import { api } from "../../trpc/server";
 import { returnNotFound, slugify } from "~/utils/utils";
 import NotFound from "../components/NotFound";
-export const dynamic = "force-dynamic"
+export const dynamic = "force-dynamic";
 
 export default async function Blog() {
   const data = await api.post.getAll.query();
   const navLinks = await api.config.getNavBarLinks.query();
+  const websiteData = await api.config.getConfig.query();
+  if (!websiteData) return null;
+  const theme = await api.config.getTheme.query({ name: websiteData.theme });
 
   const found = returnNotFound("blog", navLinks);
 
@@ -21,8 +24,8 @@ export default async function Blog() {
           .map((post) => {
             return (
               <li
-                className="w-50 m-4 bg-[#e3cda0]
-       p-4"
+                style={{ backgroundColor: theme.secondaryAccent?.hex }}
+                className="w-50 m-4 p-4"
                 key={post.id}
               >
                 <Link href={`/blog/posts/${slugify(post.title)}`}>

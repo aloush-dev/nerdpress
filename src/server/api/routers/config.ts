@@ -80,12 +80,27 @@ export const configHandler = createTRPCRouter({
     }),
   getColours: publicProcedure.query(async ({ ctx }) => {
     const colours = await ctx.prisma.colourScheme.findMany();
-    return colours;
+    const coloursObject: Record<string, { hex: string }> = {};
+
+    colours.forEach((color) => {
+      coloursObject[color.name] = { hex: color.hex };
+    });
+
+    return coloursObject;
   }),
+  getSpecificColour: publicProcedure
+    .input(z.object({ colourName: z.string() }))
+    .query(async ({ input: { colourName }, ctx }) => {
+      const colour = await ctx.prisma.colourScheme.findFirst({
+        where: { name: colourName },
+      });
+
+      return colour;
+    }),
   createColour: protectedAdminProcedure
-    .input(z.object({ name: z.string(), hex: z.string() }))
-    .mutation(({ input: { name, hex }, ctx }) => {
-      return ctx.prisma.colourScheme.create({ data: { name, hex } });
+    .input(z.object({ name: z.string(), hex: z.string(), theme: z.string() }))
+    .mutation(({ input: { name, hex, theme }, ctx }) => {
+      return ctx.prisma.colourScheme.create({ data: { name, hex, theme } });
     }),
   updateColour: protectedAdminProcedure
     .input(z.object({ id: z.number(), name: z.string(), hex: z.string() }))
@@ -96,5 +111,20 @@ export const configHandler = createTRPCRouter({
       });
 
       return updatedColour;
+    }),
+  getTheme: publicProcedure
+    .input(z.object({ name: z.string() }))
+    .query(async ({ input: { name }, ctx }) => {
+      const theme = await ctx.prisma.colourScheme.findMany({
+        where: { theme: name },
+      });
+
+      const themeObject: Record<string, { hex: string }> = {};
+
+      theme.forEach((item) => {
+        themeObject[item.name] = { hex: item.hex };
+      });
+
+      return themeObject;
     }),
 });

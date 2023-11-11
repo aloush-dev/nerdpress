@@ -15,8 +15,16 @@ export async function Footer() {
 
   if (!websiteData) return null;
 
+  const theme = await api.config.getTheme.query({ name: websiteData.theme });
+
   return (
-    <div className="bg-theme-header text-[#fbf2e4] h-footer">
+    <div
+      style={{
+        backgroundColor: theme.footer?.hex,
+        color: theme.footerText?.hex,
+      }}
+      className=" h-footer"
+    >
       <div className="flex flex-col text-center">
         <div className={`${pacifico.className} p-6 text-4xl `}>
           {websiteData.websiteName}

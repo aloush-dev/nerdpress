@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { api } from "~/utils/api";
 import { Button } from "../reuseable/Button";
+import { Heading } from "../reuseable/Heading";
 
 function updateTextAreaSize(textArea?: HTMLTextAreaElement) {
   if (textArea == null) return;
@@ -56,11 +57,10 @@ function Form() {
   if (session.status !== "authenticated") return null;
 
   return (
-    <>
-      <form
-        onSubmit={handleSubmit}
-        className="mx-auto flex flex-col gap-4 p-8 "
-      >
+    <div className="bg-white p-8 rounded-lg m-4">
+      <Heading text="Add New Service" colour="theme-text-2" />
+
+      <form onSubmit={handleSubmit} className="mx-auto flex flex-col gap-4">
         <input
           style={{ height: 0 }}
           value={titleInputValue}
@@ -93,6 +93,6 @@ function Form() {
 
         <Button text="Submit" />
       </form>
-    </>
+    </div>
   );
 }

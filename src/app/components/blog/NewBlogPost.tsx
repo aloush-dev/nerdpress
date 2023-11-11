@@ -1,16 +1,13 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import {
-  type FormEvent,
-  useState,
-  type ChangeEvent,
-} from "react";
+import { type FormEvent, useState, type ChangeEvent } from "react";
 import { api } from "../../../trpc/react";
 import { Button } from "../reuseable/Button";
 import { slugify } from "~/utils/utils";
 import QuillEditor from "../admin/QuillEditor";
 import DOMPurify from "dompurify";
+import { Heading } from "../reuseable/Heading";
 
 type Category = {
   id: string;
@@ -95,55 +92,62 @@ function Form() {
   if (session.status !== "authenticated") return null;
 
   return (
-    <form onSubmit={handleSubmit} className="mx-auto flex flex-col gap-4  p-4">
-      <p>{feedback}</p>
-      <input
-        value={titleInputValue}
-        onChange={(e) => setTitleInputValue(e.target.value)}
-        className="p-4 text-lg text-black"
-        placeholder="blog post title"
-      />
+    <div className="m-4 rounded-lg bg-white">
+      <Heading text="New Blog Post" colour="theme-text-2" />
 
-      <input
-        onChange={(e) => categoryTyping(e)}
-        className="p-4 text-lg text-black"
-        placeholder="category"
-        value={category}
-      />
+      <form
+        onSubmit={handleSubmit}
+        className="mx-auto flex flex-col gap-4  p-4"
+      >
+        <p>{feedback}</p>
+        <input
+          value={titleInputValue}
+          onChange={(e) => setTitleInputValue(e.target.value)}
+          className="border-2 p-4 text-lg text-black"
+          placeholder="blog post title"
+        />
 
-      <ul className="flex justify-center">
-        {category.length > 1
-          ? categories?.map((category) => {
-              return (
-                <li
-                  className="m-2 bg-theme-accent p-2 text-white"
-                  key={category.id}
-                >
-                  {category.name}
-                </li>
-              );
-            })
-          : data?.map((category) => {
-              return (
-                <li
-                  className="m-2 bg-theme-accent p-2 text-white"
-                  key={category.id}
-                  onClick={() => {
-                    setCategory(category.name);
-                  }}
-                >
-                  {category.name}
-                </li>
-              );
-            })}
-      </ul>
+        <input
+          onChange={(e) => categoryTyping(e)}
+          className="border-2 p-4 text-lg text-black"
+          placeholder="category"
+          value={category}
+        />
 
-      <QuillEditor
-        contentInputValue={contentInputValue}
-        setContentInputValue={setContentInputValue}
-      />
+        <ul className="flex justify-center">
+          {category.length > 1
+            ? categories?.map((category) => {
+                return (
+                  <li
+                    className="m-2 bg-theme-accent p-2 text-white"
+                    key={category.id}
+                  >
+                    {category.name}
+                  </li>
+                );
+              })
+            : data?.map((category) => {
+                return (
+                  <li
+                    className="m-2 bg-theme-accent p-2 text-white"
+                    key={category.id}
+                    onClick={() => {
+                      setCategory(category.name);
+                    }}
+                  >
+                    {category.name}
+                  </li>
+                );
+              })}
+        </ul>
 
-      <Button disable={disableButton} text="Submit" />
-    </form>
+        <QuillEditor
+          contentInputValue={contentInputValue}
+          setContentInputValue={setContentInputValue}
+        />
+
+        <Button disable={disableButton} text="Submit" />
+      </form>
+    </div>
   );
 }

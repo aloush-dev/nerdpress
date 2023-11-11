@@ -19,7 +19,7 @@ const BurgerMenu = ({ navLinks }: { navLinks: NavLink[] }) => {
       width: 0,
     },
     open: {
-      width: "50vw",
+      width: "60vw",
     },
   };
 

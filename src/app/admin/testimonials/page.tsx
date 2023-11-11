@@ -22,7 +22,7 @@ export default function AdminTestimonials() {
         {data.map((testimonal) => {
           return (
             <li
-              className="m-4 flex flex-col items-center  bg-[#83948e] p-4 text-[#fbf2e4]"
+              className="m-4 flex flex-col items-center"
               key={testimonal.id}
             >
               <p>{testimonal.content}</p>

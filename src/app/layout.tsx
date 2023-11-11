@@ -3,7 +3,7 @@ import { Header } from "~/app/components/layout/Header";
 import { headers } from "next/headers";
 import "../styles/globals.css";
 import { TRPCReactProvider } from "~/trpc/react";
-import { Providers } from "./provider";
+import { Providers } from "../providers/providers";
 import { api } from "~/trpc/server";
 export const dynamic = "force-dynamic";
 
@@ -16,14 +16,17 @@ export async function generateMetadata() {
   };
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const websiteData = await api.config.getConfig.query();
+  if (!websiteData) return null;
+  const theme = await api.config.getTheme.query({ name: websiteData.theme });
   return (
     <html lang="en">
-      <body className="bg-theme-background-light ">
+      <body style={{ backgroundColor: theme.background?.hex }}>
         <TRPCReactProvider headers={headers()}>
           <Providers>
             <Header />

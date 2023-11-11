@@ -66,18 +66,20 @@ model Faqs {
 }
 
 model Configuration {
-    id               Int     @id @default(autoincrement())
-    websiteName      String  @default("My Website")
-    websiteSubTitle  String  @default("My Websites SubTitle")
-    instagramLink    String  @default("")
-    facebookLink     String  @default("")
-    footerLinks      Boolean @default(false)
+    id              Int     @id @default(autoincrement())
+    websiteName     String  @default("My Website")
+    websiteSubTitle String  @default("My Websites SubTitle")
+    theme           String  @default("default")
+    instagramLink   String  @default("")
+    facebookLink    String  @default("")
+    footerLinks     Boolean @default(false)
 }
 
 model ColourScheme {
-    id   Int    @id @default(autoincrement())
-    name String
-    hex  String
+    id    Int    @id @default(autoincrement())
+    name  String
+    hex   String
+    theme String
 }
 
 model NavBarLinks {

@@ -1,5 +1,4 @@
 import { NewService } from "~/app/components/admin/NewService";
-import { Heading } from "~/app/components/reuseable/Heading";
 import { api } from "../../../trpc/server";
 
 export default async function AdminServicePage() {
@@ -7,10 +6,7 @@ export default async function AdminServicePage() {
 
   return (
     <>
-      <div className="bg-theme-green text-center ">
-        <Heading text="New Service" colour="theme-text-1" />
         <NewService />
-      </div>
 
       <ul className="flex flex-col items-center justify-center">
         {data?.map((service) => {

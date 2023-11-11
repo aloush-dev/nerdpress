@@ -12,12 +12,18 @@ const pacifico = Pacifico({
 export async function Header() {
   const websiteData = await api.config.getConfig.query();
   const navLinks = await api.config.getNavBarLinks.query();
+  if(!websiteData) return null
+  const theme = await api.config.getTheme.query({ name: websiteData.theme });
 
   return (
     <header
-      className={`sticky top-0 z-10 flex h-header bg-theme-header p-4 text-theme-text-primary `}
+      style={{
+        backgroundColor: theme.header?.hex,
+        color: theme.headerText?.hex,
+      }}
+      className={`sticky top-0 z-10 flex h-header p-4 `}
     >
-      <div className="mx-auto flex w-full items-center justify-between px-4 md:max-w-4xl">
+      <div className="mx-auto flex w-full items-center justify-between px-4 ">
         <div>
           <Link className="text-4xl font-black" href="/">
             <h1 className={pacifico.className}>{websiteData?.websiteName}</h1>

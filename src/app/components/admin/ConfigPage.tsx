@@ -2,11 +2,22 @@
 
 import { api } from "~/trpc/react";
 import { Input } from "../reuseable/Input";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "../reuseable/Button";
 
-export default function ConfigPage() {
-  const websiteData = api.config.getConfig.useQuery();
+export default function ConfigPage({
+  websiteData,
+}: {
+  websiteData: {
+    id: number;
+    websiteName: string;
+    websiteSubTitle: string;
+    theme: string;
+    instagramLink: string;
+    facebookLink: string;
+    footerLinks: boolean;
+  };
+}) {
   const updateWebsiteData = api.config.update.useMutation({
     onSuccess: () => {
       setButtonText("submitted!");
@@ -16,8 +27,7 @@ export default function ConfigPage() {
     },
   });
 
-  const [websiteName, setWebsiteName] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [websiteName, setWebsiteName] = useState(websiteData.websiteName);
   const [buttonText, setButtonText] = useState("submit");
 
   const changeWebsiteName = () => {
@@ -26,14 +36,6 @@ export default function ConfigPage() {
     });
   };
 
-  useEffect(() => {
-    if (websiteData.data) {
-      setWebsiteName(websiteData.data?.websiteName);
-      setIsLoading(false);
-    }
-  }, [websiteData.data]);
-
-  if (isLoading) return <p>Loading...</p>;
   return (
     <div className="p-2">
       <div className="flex flex-col justify-center">
@@ -48,8 +50,6 @@ export default function ConfigPage() {
           <Button text={buttonText} onClick={changeWebsiteName} />
         </div>
       </div>
-
-      
     </div>
   );
 }

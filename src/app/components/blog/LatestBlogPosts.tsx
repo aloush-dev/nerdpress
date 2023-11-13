@@ -1,13 +1,17 @@
 import Link from "next/link";
 import { api } from "~/trpc/server";
-import { slugify } from "~/utils/utils";
+import { getTheme, slugify } from "~/utils/utils";
 import { Heading } from "../reuseable/Heading";
 
 export async function LatestBlogPosts() {
   const data = await api.post.getAll.query();
-  const websiteData = await api.config.getConfig.query();
-  if (!websiteData) return null;
-  const theme = await api.config.getTheme.query({ name: websiteData.theme });
+  // const websiteData = await api.config.getConfig.query();
+  // if (!websiteData) return null;
+  // const theme = await api.config.getTheme.query({ name: websiteData.theme });
+
+  const { theme, websiteData } = await getTheme();
+
+  if (!theme || !websiteData) return null;
 
   return (
     <div className="bg-theme-header ">

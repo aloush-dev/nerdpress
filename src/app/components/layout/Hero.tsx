@@ -1,9 +1,14 @@
 import Image from "next/image";
 import HeroImage from "../../../../public/homeheroimage.jpeg";
-import { api } from "~/trpc/server";
+// import { api } from "~/trpc/server";
+import { getConfig } from "~/utils/utils";
 
 export async function Hero() {
-  const websiteData = await api.config.getConfig.query();
+  // const websiteData = await api.config.getConfig.query();
+
+  const websiteData = await getConfig();
+
+  if (!websiteData) return null;
 
   return (
     <div className="flex flex-col items-center justify-center p-6 text-center text-theme-text-2">

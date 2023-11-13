@@ -3,6 +3,7 @@ import Link from "next/link";
 import BurgerMenu from "./BurgerMenu";
 import { Pacifico } from "next/font/google";
 import { api } from "~/trpc/server";
+import { getTheme } from "~/utils/utils";
 
 const pacifico = Pacifico({
   weight: "400",
@@ -10,10 +11,14 @@ const pacifico = Pacifico({
 });
 
 export async function Header() {
-  const websiteData = await api.config.getConfig.query();
+  // const websiteData = await api.config.getConfig.query();
   const navLinks = await api.config.getNavBarLinks.query();
-  if(!websiteData) return null
-  const theme = await api.config.getTheme.query({ name: websiteData.theme });
+  // if(!websiteData) return null
+  // const theme = await api.config.getTheme.query({ name: websiteData.theme });
+
+  const { theme, websiteData } = await getTheme();
+
+  if (!theme || !websiteData) return null;
 
   return (
     <header

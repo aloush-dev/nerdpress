@@ -3,6 +3,7 @@ import AdminOnly from "../components/admin/AdminOnly";
 import { AdminPanelButtons } from "../components/admin/AdminPanelButtons";
 import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/trpc/server";
+import { SidePanel } from "../components/admin/SidePanel";
 
 export default async function AdminLayout({
   children,
@@ -19,11 +20,14 @@ export default async function AdminLayout({
   return (
     <div
       style={{ backgroundColor: theme.background?.hex }}
-      className="min-h-screen-view"
+      className="grid grid-cols-1 gap-4 md:flex"
     >
       <AdminOnly>
         <AdminPanelButtons />
-        {children}
+        <div className="hidden md:block">
+          <SidePanel themeData={theme} />
+        </div>
+        <div className="md:ml-20">{children}</div>
       </AdminOnly>
     </div>
   );

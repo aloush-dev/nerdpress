@@ -7,6 +7,7 @@ import { faqRouter } from "./routers/faqs";
 import { userRouter } from "./routers/user";
 import { testimonialRouter } from "./routers/testimonial";
 import { categoryRouter } from "./routers/category";
+import { aboutRouter } from "./routers/about";
 
 export const appRouter = createTRPCRouter({
   post: postRouter,
@@ -17,6 +18,7 @@ export const appRouter = createTRPCRouter({
   userProfile: userRouter,
   testimonials: testimonialRouter,
   category: categoryRouter,
+  about: aboutRouter
 });
 
 // export type definition of API

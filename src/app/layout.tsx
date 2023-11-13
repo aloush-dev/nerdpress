@@ -5,6 +5,7 @@ import "../styles/globals.css";
 import { TRPCReactProvider } from "~/trpc/react";
 import { Providers } from "../providers/providers";
 import { api } from "~/trpc/server";
+import { getTheme } from "~/utils/utils";
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata() {
@@ -21,9 +22,9 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const websiteData = await api.config.getConfig.query();
-  if (!websiteData) return null;
-  const theme = await api.config.getTheme.query({ name: websiteData.theme });
+  const { theme } = await getTheme();
+
+  if (!theme) return null;
   return (
     <html lang="en">
       <body style={{ backgroundColor: theme.background?.hex }}>

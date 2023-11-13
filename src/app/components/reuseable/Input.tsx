@@ -16,7 +16,7 @@ export function Input({
   return (
     <>
       <input
-        className={`border-2 bg-white text-black  p-4 text-lg focus:border-theme-accent focus:outline-none ${customClass}`}
+        className={`border-2 bg-white p-2  text-lg text-black focus:border-theme-accent focus:outline-none rounded-lg ${customClass}`}
         type={type}
         value={value}
         onChange={onChange}

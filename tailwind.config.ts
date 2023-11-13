@@ -29,6 +29,7 @@ export default {
       height: {
         header: "5rem",
         footer: "11rem",
+        "screen-view": "calc(100vh - 16rem)",
       },
     },
   },

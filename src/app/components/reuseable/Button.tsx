@@ -15,7 +15,7 @@ export function Button({
 }) {
   return (
     <div
-      className={`flex items-center justify-center bg-theme-accent ${padding} text-xl font-bold text-white`}
+      className={`flex items-center justify-center bg-theme-accent ${padding} text-xl font-bold text-white w-auto`}
     >
       {href ? (
         <Link href={`${href}`}>{text}</Link>

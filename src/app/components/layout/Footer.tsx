@@ -3,6 +3,7 @@ import { Pacifico } from "next/font/google";
 import { InstaButton } from "../reuseable/InstaButton";
 import { FacebookButton } from "../reuseable/FacebookButton";
 import { api } from "~/trpc/server";
+import { getTheme } from "~/utils/utils";
 
 const pacifico = Pacifico({
   weight: "400",
@@ -10,12 +11,15 @@ const pacifico = Pacifico({
 });
 
 export async function Footer() {
-  const websiteData = await api.config.getConfig.query();
+  // const websiteData = await api.config.getConfig.query();
   const navLinks = await api.config.getNavBarLinks.query();
 
-  if (!websiteData) return null;
+  
+  // const theme = await api.config.getTheme.query({ name: websiteData.theme });
+  
+  const { theme, websiteData } = await getTheme();
 
-  const theme = await api.config.getTheme.query({ name: websiteData.theme });
+  if (!theme || !websiteData) return null;
 
   return (
     <div

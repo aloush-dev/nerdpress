@@ -7,6 +7,9 @@ import NotFound from "../components/NotFound";
 async function FaqsPage() {
   const data = await api.faqs.getAll.query();
   const navLinks = await api.config.getNavBarLinks.query();
+  const sortedData = data
+  .slice()
+  .sort((a, b) => a.displayPosition - b.displayPosition);
 
   const found = returnNotFound("faqs", navLinks);
 
@@ -16,7 +19,7 @@ async function FaqsPage() {
     <>
       <Heading text="Frequently Asked Questions" />
       <ul className="grid lg:grid-cols-2">
-        {data?.map((faq) => {
+        {sortedData?.map((faq) => {
           return <Faq key={faq.id} data={faq} />;
         })}
       </ul>

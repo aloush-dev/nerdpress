@@ -14,9 +14,9 @@ export async function LatestBlogPosts() {
   if (!theme || !websiteData) return null;
 
   return (
-    <div className="bg-theme-header ">
-      <Heading colour="theme-text-primary" text="Latest Blog Posts" />
-      <ul className="grid justify-center lg:grid-cols-3">
+    <div className="bg-theme-header w-full">
+      <Heading padding="p-4" colour="theme-text-primary" text="Latest Blog Posts" />
+      <ul className="grid justify-center md:grid-cols-3">
         {data
           ?.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
           .slice(0, 3)

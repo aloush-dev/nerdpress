@@ -26,4 +26,25 @@ export const faqRouter = createTRPCRouter({
     .mutation(({ input: { id }, ctx }) => {
       return ctx.prisma.faqs.delete({ where: { id: id } });
     }),
+  updateDisplayPositions: protectedAdminProcedure
+    .input(
+      z.array(
+        z.object({
+          id: z.number(),
+          displayPosition: z.number(),
+        })
+      )
+    )
+    .mutation(async ({ input, ctx }) => {
+      const updateOperations = input.map((faq) =>
+        ctx.prisma.faqs.update({
+          where: { id: faq.id },
+          data: { displayPosition: faq.displayPosition },
+        })
+      );
+
+      await ctx.prisma.$transaction(updateOperations);
+
+      return "Display positions updated successfully";
+    }),
 });

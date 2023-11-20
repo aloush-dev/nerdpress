@@ -1,22 +1,21 @@
 import { NewService } from "~/app/components/admin/NewService";
 import { api } from "../../../trpc/server";
+import ServiceList from "~/app/components/reuseable/InteractiveList";
+import { getTheme } from "~/utils/utils";
 
 export default async function AdminServicePage() {
   const data = await api.service.getAll.query();
 
-  return (
-    <>
-        <NewService />
+  const { theme } = await getTheme();
+  if (!theme) return null;
 
-      <ul className="flex flex-col items-center justify-center">
-        {data?.map((service) => {
-          return (
-            <li key={service.id} className="p-2">
-              {service.title.toUpperCase()}
-            </li>
-          );
-        })}
-      </ul>
-    </>
+  return (
+    <div className="flex flex-col">
+      <NewService />
+
+      <div className="flex w-full justify-center">
+        <ServiceList themeData={theme} input={data} />
+      </div>
+    </div>
   );
 }

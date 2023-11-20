@@ -30,7 +30,7 @@ export function SidePanel({
         backgroundColor: themeData.tertiaryAccent?.hex,
         color: themeData.tertiaryText?.hex,
       }}
-      className="flex flex-col fixed h-screen-view z-10"
+      className="flex flex-col fixed h-screen-view z-10 shadow-lg"
       onMouseEnter={() => cycleOpen()}
       onMouseLeave={() => cycleOpen()}
     >

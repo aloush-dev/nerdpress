@@ -7,10 +7,9 @@ import { api } from "~/trpc/server";
 
 export default async function AboutPage() {
   const navLinks = await api.config.getNavBarLinks.query();
+  const pageFound = returnNotFound("about", navLinks);
 
-  const found = returnNotFound("about", navLinks);
-
-  if (found) return <NotFound />;
+  if (pageFound) return <NotFound />;
   return (
     <div className="flex flex-col items-center justify-center">
       <Heading text="About Me" />

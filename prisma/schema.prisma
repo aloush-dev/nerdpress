@@ -88,6 +88,14 @@ model NavBarLinks {
     active Boolean
 }
 
+model WebsiteContent {
+    id             Int     @id @default(autoincrement())
+    associatedPage String
+    positionOnPage Int
+    heading        String?
+    subHeading     String?
+}
+
 model Account {
     id                String  @id @default(cuid())
     userId            String

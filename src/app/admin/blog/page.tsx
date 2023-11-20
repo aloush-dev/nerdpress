@@ -1,6 +1,7 @@
-import { NewBlogPost } from "~/app/components/blog/NewBlogPost";
+// import { NewBlogPost } from "~/app/components/blog/NewBlogPost";
 import { api } from "~/trpc/server";
 import { getTheme } from "~/utils/utils";
+import { MdEdit } from "react-icons/md";
 
 export default async function AdminBlogPage() {
   const blogPosts = await api.post.getAll.query();
@@ -15,32 +16,34 @@ export default async function AdminBlogPage() {
     <>
       {/* <NewBlogPost /> */}
 
-      <ul>
+      <ul className="w-full">
         <li
           style={{ backgroundColor: theme.cardBackground?.hex }}
-          className="m-2 mx-4 grid grid-cols-4 rounded-sm p-2 font-bold"
+          className="m-2 mx-4 grid grid-cols-5 rounded-sm p-2 font-bold"
         >
-          <div className="col-span-2">Title</div>
-          <div className="col-span-1">Date Posted</div>
-          <div className="col-span-1">Edit</div>
+          <div className="col-span-3 mr-2 border-r-2">Title</div>
+          <div className="col-span-1 mr-2 border-r-2">Date Posted</div>
+          <div className="col-span-1 ml-auto ">Edit</div>
         </li>
         {blogPosts.map((post) => {
           return (
             <li
               style={{ backgroundColor: theme.cardBackground?.hex }}
-              className="m-2 mx-4 grid grid-cols-4 items-center rounded-sm p-2"
+              className="m-2 mx-4 grid grid-cols-5 items-center rounded-sm p-2"
               key={post.id}
             >
-              <div className="col-span-2">{post.title}</div>
-              <div className="col-span-1">{post.createdAt.toDateString()}</div>
+              <div className="col-span-3 mr-2 border-r-2">{post.title}</div>
+              <div className="col-span-1 mr-2 border-r-2">
+                {post.createdAt.toDateString()}
+              </div>
               <button
-                className="col-span-1 rounded-lg p-2 font-bold"
+                className="col-span-1 ml-auto flex w-fit items-center justify-center rounded-lg p-2 font-bold"
                 style={{
                   backgroundColor: theme.tertiaryAccent?.hex,
                   color: theme.tertiaryText?.hex,
                 }}
               >
-                edit
+                <MdEdit />
               </button>
             </li>
           );

@@ -20,14 +20,14 @@ export default async function AdminLayout({
   return (
     <div
       style={{ backgroundColor: theme.background?.hex }}
-      className="grid grid-cols-1 gap-4 md:flex"
+      className="grid grid-cols-1 gap-4 md:flex "
     >
       <AdminOnly>
         <AdminPanelButtons />
         <div className="hidden md:block">
           <SidePanel themeData={theme} />
         </div>
-        <div className="md:ml-20">{children}</div>
+        <div className="md:ml-20 w-full">{children}</div>
       </AdminOnly>
     </div>
   );

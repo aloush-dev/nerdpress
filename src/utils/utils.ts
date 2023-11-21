@@ -1,19 +1,8 @@
 import { cache } from "react";
 import { type NavLink } from "~/app/components/layout/Navbar";
 import { api } from "~/trpc/server";
-import NotFound from "~/app/components/NotFound";
 
-export function slugify(title: string): string {
-  title = title.trim();
 
-  title = title.toLowerCase();
-
-  title = title.replace(/\s+/g, "-");
-
-  title = title.replace(/[^a-z0-9-]/g, "");
-
-  return title;
-}
 
 export function returnNotFound(page: string, navLinks: NavLink[] | null) {
   return navLinks?.find((link) => {

@@ -1,20 +1,20 @@
 import Link from "next/link";
 import { api } from "../../trpc/server";
-import { returnNotFound, slugify } from "~/utils/utils";
+import { getTheme, returnNotFound } from "~/utils/utils";
+import { slugify } from "~/utils/clientutils";
 import NotFound from "../components/NotFound";
 export const dynamic = "force-dynamic";
 
 export default async function Blog() {
   const data = await api.post.getAll.query();
   const navLinks = await api.config.getNavBarLinks.query();
-  const websiteData = await api.config.getConfig.query();
-  if (!websiteData) return null;
-  const theme = await api.config.getTheme.query({ name: websiteData.theme });
+  const { theme } = await getTheme();
 
   const found = returnNotFound("blog", navLinks);
 
   if (found) return <NotFound />;
 
+  if (!theme) return null;
   if (!data) <p>No posts to show</p>;
   return (
     <>

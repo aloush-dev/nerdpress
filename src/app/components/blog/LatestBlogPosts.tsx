@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { api } from "~/trpc/server";
-import { getTheme, slugify } from "~/utils/utils";
+import { getTheme } from "~/utils/utils";
 import { Heading } from "../reuseable/Heading";
+import { slugify } from "~/utils/clientutils";
 
 export async function LatestBlogPosts() {
   const data = await api.post.getAll.query();

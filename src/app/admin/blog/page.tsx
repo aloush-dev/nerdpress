@@ -1,21 +1,34 @@
-// import { NewBlogPost } from "~/app/components/blog/NewBlogPost";
 import { api } from "~/trpc/server";
 import { getTheme } from "~/utils/utils";
 import { MdEdit } from "react-icons/md";
+import { FiPlusCircle } from "react-icons/fi";
+import Link from "next/link";
 
 export default async function AdminBlogPage() {
   const blogPosts = await api.post.getAll.query();
-  // const websiteData = await api.config.getConfig.query();
-  // if (!websiteData) return null;
-  // const theme = await api.config.getTheme.query({ name: websiteData.theme });
 
   const { theme } = await getTheme();
   if (!theme) return null;
 
   return (
-    <>
-      {/* <NewBlogPost /> */}
-
+    <div className="flex flex-col">
+      <div className="flex justify-end">
+        <Link
+          href="/admin/blog/new" 
+          style={{
+            backgroundColor: theme.tertiaryAccent?.hex,
+            color: theme.tertiaryText?.hex,
+          }}
+          className="m-4 w-fit rounded-lg py-2 pl-4 font-bold"
+        >
+          <div className="flex items-center ">
+            New Post
+            <div className="pl-2 pr-4 text-2xl">
+              <FiPlusCircle />
+            </div>
+          </div>
+        </Link>
+      </div>
       <ul className="w-full">
         <li
           style={{ backgroundColor: theme.cardBackground?.hex }}
@@ -49,6 +62,6 @@ export default async function AdminBlogPage() {
           );
         })}
       </ul>
-    </>
+    </div>
   );
 }

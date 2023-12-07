@@ -1,15 +1,23 @@
 import { api } from "~/trpc/server";
 import { Heading } from "../components/reuseable/Heading";
-import { Faq } from "../components/Faq";
 import { returnNotFound } from "~/utils/utils";
 import NotFound from "../components/NotFound";
+import { FaqItem } from "../components/faq/FaqItem";
+
+export type Faq = {
+  id: number;
+  userId: string;
+  question: string;
+  answer: string;
+  displayPosition: number;
+};
 
 async function FaqsPage() {
   const data = await api.faqs.getAll.query();
   const navLinks = await api.config.getNavBarLinks.query();
   const sortedData = data
-  .slice()
-  .sort((a, b) => a.displayPosition - b.displayPosition);
+    .slice()
+    .sort((a, b) => a.displayPosition - b.displayPosition);
 
   const found = returnNotFound("faqs", navLinks);
 
@@ -17,12 +25,12 @@ async function FaqsPage() {
 
   return (
     <>
-      <Heading text="Frequently Asked Questions" />
-      <ul className="grid lg:grid-cols-2">
+      <Heading padding="p-4" text="Frequently Asked Questions" />
+      <div>
         {sortedData?.map((faq) => {
-          return <Faq key={faq.id} data={faq} />;
+          return <FaqItem key={faq.id} data={faq} />;
         })}
-      </ul>
+      </div>
     </>
   );
 }

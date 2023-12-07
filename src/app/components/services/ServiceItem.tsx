@@ -2,14 +2,14 @@
 
 import { useState } from "react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import { type Faq } from "~/app/faqs/page";
 import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
+import { type Service } from "~/app/services/page";
 
-export function FaqItem({
+export function ServiceItem({
   data,
   theme,
 }: {
-  data: Faq;
+  data: Service;
   theme: Record<
     string,
     {
@@ -31,14 +31,17 @@ export function FaqItem({
       }}
     >
       <div className="flex items-center justify-between">
-        <h3 className="text-xl font-bold">{data.question}</h3>
+        <div >
+          <h3 className="text-2xl font-bold">{data.title.toUpperCase()}</h3>
+          <h4 className="text-xl font-bold">£{data.price}</h4>
+        </div>
         {open ? (
           <IoIosArrowDropup className="text-4xl" />
         ) : (
           <IoIosArrowDropdown className="text-4xl" />
         )}
       </div>
-      {open && <p className="pt-4">{data.answer}</p>}
+      {open && <p className="pt-4">{data.description}</p>}
     </div>
   );
 }

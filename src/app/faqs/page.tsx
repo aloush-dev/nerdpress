@@ -1,6 +1,6 @@
 import { api } from "~/trpc/server";
 import { Heading } from "../components/reuseable/Heading";
-import { returnNotFound } from "~/utils/utils";
+import { getTheme, returnNotFound } from "~/utils/utils";
 import NotFound from "../components/NotFound";
 import { FaqItem } from "../components/faq/FaqItem";
 
@@ -20,6 +20,9 @@ async function FaqsPage() {
     .sort((a, b) => a.displayPosition - b.displayPosition);
 
   const found = returnNotFound("faqs", navLinks);
+  const { theme } = await getTheme();
+
+  if (!theme) return null;
 
   if (found) return <NotFound />;
 
@@ -28,7 +31,7 @@ async function FaqsPage() {
       <Heading padding="p-4" text="Frequently Asked Questions" />
       <div>
         {sortedData?.map((faq) => {
-          return <FaqItem key={faq.id} data={faq} />;
+          return <FaqItem key={faq.id} data={faq} theme={theme} />;
         })}
       </div>
     </>

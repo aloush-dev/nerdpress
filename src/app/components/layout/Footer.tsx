@@ -11,10 +11,7 @@ const pacifico = Pacifico({
 });
 
 export async function Footer() {
-  // const websiteData = await api.config.getConfig.query();
   const navLinks = await api.config.getNavBarLinks.query();
-
-  // const theme = await api.config.getTheme.query({ name: websiteData.theme });
 
   const { theme, websiteData } = await getTheme();
 
@@ -22,6 +19,13 @@ export async function Footer() {
 
   return (
     <footer>
+      <div
+        className=""
+        style={{
+          backgroundColor: theme.footer?.hex,
+        }}
+      ></div>
+
       <div
         style={{
           backgroundColor: theme.footer?.hex,

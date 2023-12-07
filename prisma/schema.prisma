@@ -104,6 +104,18 @@ model HomeContent {
     Content        String?
 }
 
+model Event {
+    id               Int      @id @default(autoincrement())
+    title            String
+    description      String   @db.Text
+    start            DateTime
+    end              DateTime
+    price            Int
+    maxAttendees     Int
+    currentAttendees Int      @default(0)
+    
+}
+
 model Account {
     id                String  @id @default(cuid())
     userId            String

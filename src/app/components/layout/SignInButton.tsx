@@ -10,13 +10,13 @@ export function SignInButton() {
     <>
       {user ? (
         user.admin ? (
-          <Button padding="p-2 rounded-sm" href="/admin" text="Admin" />
+          <Button padding="p-2 rounded-lg" href="/admin" text="Admin" />
         ) : (
-          <Button padding="p-2 rounded-sm" text="Profile" href="/profile" />
+          <Button padding="p-2 rounded-lg" text="Profile" href="/profile" />
         )
       ) : (
         <Button
-          padding="p-2 rounded-sm"
+          padding="p-2 rounded-lg"
           text="Sign In"
           onClick={() => {
             void signIn("google");

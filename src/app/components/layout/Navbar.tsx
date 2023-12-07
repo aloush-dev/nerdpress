@@ -17,7 +17,7 @@ export function Navbar({ navLinks }: { navLinks: NavLink[] }) {
             return <NavBarLink key={link.name} name={link.name} />;
           }
         })}
-        <SignInButton />
+        <SignInButton  />
       </div>
     </nav>
   );

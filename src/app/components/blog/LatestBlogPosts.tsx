@@ -6,17 +6,18 @@ import { slugify } from "~/utils/clientutils";
 
 export async function LatestBlogPosts() {
   const data = await api.post.getAll.query();
-  // const websiteData = await api.config.getConfig.query();
-  // if (!websiteData) return null;
-  // const theme = await api.config.getTheme.query({ name: websiteData.theme });
 
   const { theme, websiteData } = await getTheme();
 
   if (!theme || !websiteData) return null;
 
   return (
-    <div className="bg-theme-header w-full">
-      <Heading padding="p-4" colour="theme-text-primary" text="Latest Blog Posts" />
+    <div className="w-full bg-theme-header">
+      <Heading
+        padding="p-4"
+        colour="theme-text-primary"
+        text="Latest Blog Posts"
+      />
       <ul className="grid justify-center md:grid-cols-3">
         {data
           ?.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
